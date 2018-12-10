@@ -16,9 +16,14 @@
         }
         #bgHomepageProperty
         {
-            background-image: url(https://c.wallhere.com/photos/fe/8a/3008x2000_px_coffee_cup_freelance_laptop_minimalism_Mugs_Wooden_Surface-1335727.jpg!d);
+            /*background-image: url(https://c.wallhere.com/photos/fe/8a/3008x2000_px_coffee_cup_freelance_laptop_minimalism_Mugs_Wooden_Surface-1335727.jpg!d);
             background-repeat:no-repeat;
-            background-size:100% 200%;
+            background-size:100% 200%;*/
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
         }
         #mainLogo
         {
@@ -51,7 +56,13 @@
     </style>
 
 </head>
-<body id="bgHomepageProperty">
+<body>
+
+<video autoplay muted loop id="bgHomepageProperty">
+    <source src="images/BackGroundVideo.mp4" type="video/mp4">
+    Video Not Supported
+</video>
+
 <form>
     <div class="topnav">
         <a href="Homepage.html" class="navbar-left" style="float: left;"><img src="Images/Rackup-Logo(100X35).png"></a>
