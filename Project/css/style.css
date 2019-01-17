@@ -1,0 +1,137 @@
+#bgHomepageProperty
+{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+#mainLogo
+{
+    width: 100%;
+}
+.bgLoginProperty
+{
+    background-image:url(https://png2.kisspng.com/20180326/liw/kisspng-gradient-desktop-wallpaper-color-background-5ab88c172773b8.5174360515220439271616.png);
+    background-repeat: no-repeat;
+    background-size:100% 150%;
+
+
+}
+.icon_color{
+    color: black;
+    font-size: xx-large;
+    padding: 3px;
+}
+
+.inputbars{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    border-bottom-color: white;
+    width: 100%;
+}
+
+.textare_style{
+    border-color: antiquewhite;
+    background-color: transparent;
+    border-radius: 10px;
+    width: 100%;
+}
+.rackup_style{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.address_style{
+    margin-top: 15px;
+    font-size: medium;
+    padding: 2px;
+}
+.background_image
+{
+    background-image: url(https://png2.kisspng.com/20180326/liw/kisspng-gradient-desktop-wallpaper-color-background-5ab88c172773b8.5174360515220439271616.png);
+    background-repeat: no-repeat;
+    background-size:100% 200%;
+}
+
+.InpuTTags{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    border-bottom-color: black;
+    /*font-color: black;*/
+    color: black;
+    width: 100%;
+    padding-left: 10%;
+}
+#btn-Login {
+    border: none;
+    background-color: transparent;
+    color: black;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+#btn-Signup {
+    border: none;
+    background-color: transparent;
+    color: black;
+    margin-bottom: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+    cursor: pointer;
+}
+.fa-lock
+{
+    position: absolute;
+}
+::placeholder
+{
+    color: black;
+    opacity: 1;
+}
+.bgLoginProperty
+{
+    background-image: url(https://png2.kisspng.com/20180326/liw/kisspng-gradient-desktop-wallpaper-color-background-5ab88c172773b8.5174360515220439271616.png);
+    background-repeat: no-repeat;
+    background-size:100% 150%;
+}
+.fa-user-circle
+{
+    position: absolute;
+}
+
+.topnav {
+    background:white;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    -webkit-box-shadow: 10px 10px 31px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 31px 1px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 31px 1px rgba(0,0,0,0.75);
+    overflow: hidden;
+}
+.topnav a {
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    float: right;
+}
+.topnav a:hover {
+    background-color: darkgrey;
+    /*color: transparent;*/
+}
+.topnav a.active {
+    color: black;
+}
