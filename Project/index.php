@@ -1,5 +1,5 @@
 <?php
-    function successSignUp()
+   /* function successSignUp()
     {
         echo"<div class=\"modal fade\" id=\"LoginModal\" role=\"dialog\">";
         echo"<div class=\"modal-dialog\">";
@@ -13,7 +13,7 @@
         echo"</div>";
         echo"</div>";
         echo"</div>";
-    }
+    }*/
     require_once "Server/db_connection.php";
     if(isset($_POST['sgn_signup_btn']))
     {
@@ -26,7 +26,7 @@
         $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob');";
         $insert = mysqli_query($connection, $insert_user);
         if($insert){
-            successSignUp();
+           // successSignUp();
             header("location: ".$_SERVER['PHP_SELF']);
 
         }
