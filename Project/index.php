@@ -25,6 +25,7 @@ function debug_to_console( $data ) {
 
 require_once "Server/db_connection.php";
 $errors=array();
+$errors2=array();
 $fname="";
 $lname="";
 $mail="";
@@ -53,17 +54,13 @@ if(isset($_POST['sgn_signup_btn']))
         array_push($errors,"Date of Birth is required");
     }
     if($pass!=$pass2){
-        array_push($errors,"The two passwords donot match");
+        array_push($errors,"The two passwords do not match");
     }
     if(count($errors)==0)
     {
         $password=md5($pass);
         $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob');";
         $insert = mysqli_query($connection, $insert_user);
-        if($insert){
-            // successSignUp();
-            //header('location: profile.php');
-        }
     }
 }
 
@@ -72,12 +69,12 @@ if(isset($_POST['sin_signin_btn']))
     $email=$_POST['lgn_email'];
     $pass=$_POST['lgn_pass'];
     if (empty($email)) {
-        array_push($errors, "Email is required");
+        array_push($errors2, "Email is required");
     }
     if (empty($pass)) {
-        array_push($errors, "Password is required");
+        array_push($errors2, "Password is required");
     }
-    if (count($errors) == 0) {
+    if (count($errors2) == 0) {
         $password = md5($pass);
         $query = "SELECT * FROM user WHERE email='$email' AND password='$pass'";
         $results = mysqli_query($connection, $query);
@@ -87,7 +84,7 @@ if(isset($_POST['sin_signin_btn']))
             header('location: profile.php');
         }
         else {
-            array_push($errors, "Wrong username/password combination");
+            array_push($errors2, "Wrong username/password combination");
         }
     }
 }
@@ -207,6 +204,7 @@ if(isset($_POST['sin_signin_btn']))
                 <span class="glyphicon glyphicon-chevron-left"></span>
                 <span class="sr-only">Previous</span>
             </a>
+
             <a class="right carousel-control" href="#myCarousel" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Next</span>
@@ -221,7 +219,15 @@ if(isset($_POST['sin_signin_btn']))
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form" method="post">
-                            <?php include ('Functions/errors.php'); ?>
+                            <?php
+                                 if (count($errors2)>0) {
+                                     echo "<div class=\"error\" style=\"margin-bottom: 3%;\" >";
+                                     for ($i = 0; $i < count($errors2); $i++) {
+                                        echo "<li>".$errors2[$i]."</li>";
+                                     }
+                                     echo "</div>";
+                                 }
+                            ?>
                             <div class="input-container">
                                 <i class="fa fa-envelope icon"></i>
                                 <input class="input-field" type="email" placeholder="Email" name="lgn_email">
@@ -257,7 +263,15 @@ if(isset($_POST['sin_signin_btn']))
 
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form" method="post">
-                            <?php include ('Functions/errors.php'); ?>
+                            <?php
+                            if (count($errors)>0) {
+                                echo "<div class=\"error\" style=\"margin-bottom: 3%;\" >";
+                                for ($i = 0; $i < count($errors); $i++) {
+                                    echo "<li>".$errors[$i]."</li>";
+                                }
+                                echo "</div>";
+                            }
+                            ?>
                             <div class="input-container">
                                 <i class="fa fa-user icon"></i>
                                 <input class="input-field" type="text" placeholder="Firstname" name="sgn_firstname" value="<?php echo $fname;?>">
