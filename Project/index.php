@@ -17,7 +17,7 @@
         echo"<div class=\"modal-header\" style=\"padding:35px 50px;\">";
         echo"<h4><span class=\"glyphicon glyphicon-log-ok\"></span>Sign Up was SuccessFul</h4>";
         echo"</div>";
-        echo"<div class=\"modal-body\" style=\"padding:40px 50px;\"><button type=\"submit\" onclick=\"window.location.href='profile.html'\" class=\"btn\" name=\"btn_profileRedirect\">Take Me to My Profile</button></div>";
+        echo"<div class=\"modal-body\" style=\"padding:40px 50px;\"><button type=\"submit\" onclick=\"window.location.href='profile.php'\" class=\"btn\" name=\"btn_profileRedirect\">Take Me to My Profile</button></div>";
         echo"</div>";
         echo"</div>";
         echo"</div>";
@@ -60,7 +60,7 @@
             $insert = mysqli_query($connection, $insert_user);
             if($insert){
                 // successSignUp();
-                //header('location: profile.html');
+                //header('location: profile.php');
 
             }
 
@@ -83,7 +83,7 @@
             $results = mysqli_query($db, $query);
             if (mysqli_num_rows($results) == 1)
             {
-                header('location: profile.html');
+                header('location: profile.php');
             }
             else {
                 array_push($errors, "Wrong username/password combination");
