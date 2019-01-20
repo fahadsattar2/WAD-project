@@ -1,5 +1,12 @@
 
 <?php
+    function debug_to_console( $data ) {
+        $output = $data;
+        if ( is_array( $output ) )
+            $output = implode( ',', $output);
+
+        echo "<script>console.log( 'Printing: " . $output . "' );</script>";
+    }
    /* function successSignUp()
     {
         echo"<div class=\"modal fade\" id=\"LoginModal\" role=\"dialog\">";
@@ -21,7 +28,7 @@
     $errors=array();
     if(isset($_POST['sgn_signup_btn']))
     {
-        echo "Hello";
+        debug_to_console("Hello");
         $fname = $_POST['sgn_firstname'];
         $lname = $_POST['sgn_lastname'];
         $mail = $_POST['sgn_email'];
@@ -53,7 +60,7 @@
             $insert = mysqli_query($connection, $insert_user);
             if($insert){
                 // successSignUp();
-                header("location: ".$_SERVER['PHP_SELF']);
+                //header('location: profile.html');
 
             }
 
@@ -69,15 +76,13 @@
         if (empty($pass)) {
             array_push($errors, "Password is required");
         }
-
         if (count($errors) == 0) {
             $password = md5($pass);
             $query = "SELECT * FROM user WHERE email='$email' AND password='$pass'";
             $results = mysqli_query($db, $query);
             if (mysqli_num_rows($results) == 1)
             {
-
-                header('location: index.php');
+                header('location: profile.html');
             }
             else {
                 array_push($errors, "Wrong username/password combination");
