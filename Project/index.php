@@ -61,6 +61,7 @@
     }
     if(isset($_POST['sin_signin_btn']))
     {
+        debug_to_console("Sign-in Button clicked!!!!");
         $email=$_POST['lgn_email'];
         $pass=$_POST['lgn_pass'];
         if (empty($email)) {
