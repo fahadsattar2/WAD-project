@@ -1,91 +1,96 @@
-
 <?php
-   /* function successSignUp()
-    {
-        echo"<div class=\"modal fade\" id=\"LoginModal\" role=\"dialog\">";
-        echo"<div class=\"modal-dialog\">";
-        echo"<div class=\"modal-content\">";
-        echo"<div class=\"modal-body\" style=\"padding:40px 50px;\">";
-        echo"</div>";
-        echo"<div class=\"modal-header\" style=\"padding:35px 50px;\">";
-        echo"<h4><span class=\"glyphicon glyphicon-log-ok\"></span>Sign Up was SuccessFul</h4>";
-        echo"</div>";
-        echo"<div class=\"modal-body\" style=\"padding:40px 50px;\"><button type=\"submit\" onclick=\"window.location.href='profile.html'\" class=\"btn\" name=\"btn_profileRedirect\">Take Me to My Profile</button></div>";
-        echo"</div>";
-        echo"</div>";
-        echo"</div>";
-    }*/
+function debug_to_console( $data ) {
+    $output = $data;
+    if ( is_array( $output ) )
+        $output = implode( ',', $output);
+
+    echo "<script>console.log( 'Printing: " . $output . "' );</script>";
+}
+/* function successSignUp()
+ {
+     echo"<div class=\"modal fade\" id=\"LoginModal\" role=\"dialog\">";
+     echo"<div class=\"modal-dialog\">";
+     echo"<div class=\"modal-content\">";
+     echo"<div class=\"modal-body\" style=\"padding:40px 50px;\">";
+     echo"</div>";
+     echo"<div class=\"modal-header\" style=\"padding:35px 50px;\">";
+     echo"<h4><span class=\"glyphicon glyphicon-log-ok\"></span>Sign Up was SuccessFul</h4>";
+     echo"</div>";
+     echo"<div class=\"modal-body\" style=\"padding:40px 50px;\"><button type=\"submit\" onclick=\"window.location.href='profile.php'\" class=\"btn\" name=\"btn_profileRedirect\">Take Me to My Profile</button></div>";
+     echo"</div>";
+     echo"</div>";
+     echo"</div>";
+ }*/
 
 
-    require_once "Server/db_connection.php";
-    $errors=array();
-    if(isset($_POST['sgn_signup_btn']))
+require_once "Server/db_connection.php";
+$errors=array();
+if(isset($_POST['sgn_signup_btn']))
+{
+    debug_to_console("Hello");
+    $fname = $_POST['sgn_firstname'];
+    $lname = $_POST['sgn_lastname'];
+    $mail = $_POST['sgn_email'];
+    $pass = $_POST['sgn_password'];
+    $dob = $_POST['sgn_dob'];
+    $pass2 = $_POST['sgn_cnfrmpass'];
+    if(empty($fname)){
+        array_push($errors,"First name is required");
+    }
+    if(empty($lname)){
+        array_push($errors,"Last name is required");
+    }
+    if(empty($mail)){
+        array_push($errors,"Email is required");
+    }
+    if(empty($pass)){
+        array_push($errors,"Password is required");
+    }
+    if(empty($dob)){
+        array_push($errors,"Date of Birth is required");
+    }
+    if($pass!=$pass2){
+        array_push($errors,"The two passwords donot match");
+    }
+    if(count($errors)==0)
     {
-        echo "Hello";
-        $fname = $_POST['sgn_firstname'];
-        $lname = $_POST['sgn_lastname'];
-        $mail = $_POST['sgn_email'];
-        $pass = $_POST['sgn_password'];
-        $dob = $_POST['sgn_dob'];
-        $pass2 = $_POST['sgn_cnfrmpass'];
-        if(empty($fname)){
-            array_push($errors,"First name is required");
+        $password=md5($pass);
+        $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob');";
+        $insert = mysqli_query($connection, $insert_user);
+        if($insert){
+            // successSignUp();
+            //header('location: profile.php');
+
         }
-        if(empty($lname)){
-            array_push($errors,"Last name is required");
-        }
-        if(empty($mail)){
-            array_push($errors,"Email is required");
-        }
-        if(empty($pass)){
-            array_push($errors,"Password is required");
-        }
-        if(empty($dob)){
-            array_push($errors,"Date of Birth is required");
-        }
-        if($pass!=$pass2){
-            array_push($errors,"The two passwords donot match");
-        }
-        if(count($errors)==0)
+
+    }
+}
+if(isset($_POST['sin_signin_btn']))
+{
+    debug_to_console("Sign-in Button clicked!!!!");
+    $email=$_POST['lgn_email'];
+    $pass=$_POST['lgn_pass'];
+    if (empty($email)) {
+        array_push($errors, "Email is required");
+    }
+    if (empty($pass)) {
+        array_push($errors, "Password is required");
+    }
+    if (count($errors) == 0) {
+        $password = md5($pass);
+        $query = "SELECT * FROM user WHERE email='$email' AND password='$pass'";
+        $results = mysqli_query($connection, $query);
+        if (mysqli_num_rows($results) == 1)
         {
-            $password=md5($pass);
-            $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob');";
-            $insert = mysqli_query($connection, $insert_user);
-            if($insert){
-                // successSignUp();
-                header("location: ".$_SERVER['PHP_SELF']);
-
-            }
-
+            header('location: profile.php');
+        }
+        else {
+            array_push($errors, "Wrong username/password combination");
         }
     }
-    if(isset($_POST['sin_signin_btn']))
-    {
-        $email=$_POST['lgn_email'];
-        $pass=$_POST['lgn_pass'];
-        if (empty($email)) {
-            array_push($errors, "Email is required");
-        }
-        if (empty($pass)) {
-            array_push($errors, "Password is required");
-        }
-
-        if (count($errors) == 0) {
-            $password = md5($pass);
-            $query = "SELECT * FROM user WHERE email='$email' AND password='$pass'";
-            $results = mysqli_query($db, $query);
-            if (mysqli_num_rows($results) == 1)
-            {
-
-                header('location: index.php');
-            }
-            else {
-                array_push($errors, "Wrong username/password combination");
-            }
-        }
 
 
-    }
+}
 
 ?>
 
@@ -215,7 +220,7 @@
                     <h4><span class="glyphicon glyphicon-log-in"></span> Login</h4>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
-                    <form role="form">
+                    <form role="form" method="post">
                         <div class="input-container">
                             <i class="fa fa-envelope icon"></i>
                             <input class="input-field" type="email" placeholder="Email" name="lgn_email">
