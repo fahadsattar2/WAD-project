@@ -217,7 +217,7 @@
                     <h4><span class="glyphicon glyphicon-log-in"></span> Login</h4>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
-                    <form role="form">
+                    <form role="form" method="post">
                         <div class="input-container">
                             <i class="fa fa-envelope icon"></i>
                             <input class="input-field" type="email" placeholder="Email" name="lgn_email">
