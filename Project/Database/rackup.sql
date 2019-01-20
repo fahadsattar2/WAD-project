@@ -84,7 +84,7 @@ CREATE TABLE `user` (
   `email` varchar(30) NOT NULL,
   `password` int(30) NOT NULL,
   `rating` int(5) NOT NULL,
-  `DOB` int(15) NOT NULL
+  `DOB` DATE NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
