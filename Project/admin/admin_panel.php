@@ -2,11 +2,22 @@
 
     require_once "db_connection.php";
 
-    function printUser()
-    {
         global $connection;
         $getUserQuery = "select * from user where id = '1';";
         $queryResult = mysqli_query($connection, $getUserQuery);
+
+        echo "<table class='table-bordered'><tr>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'><button>New</button></th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Counter</th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Username</th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Email</th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Password</th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>DOB</th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Ratings</th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Edit</th>
+             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Delete</th>
+             </tr>";
+
         while ($row = mysqli_fetch_assoc($queryResult)) {
             $counter = $row['id'];
             $fname = $row['first_name'];
@@ -15,9 +26,19 @@
             $password = $row['password'];
             $rating = $row['rating'];
             $dob = $row['DOB'];
-            echo "$counter,$fname,$lname,$email,$password,$rating,$dob";
+            echo "<tr>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'><button type='submit'>". "New" ."</button></td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $counter ."</td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $fname." ".$lname ."</td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $email ."</td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $password ."</td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $dob ."</td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $rating ."</td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". "Edit" ."</td>
+              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". "Delete" ."</td></tr>";
         }
-    }
+
+        echo "</table>";
 ?>
 
 <!DOCTYPE html>
@@ -84,31 +105,13 @@
         document.getElementById("mySidenav").style.width = "0";
     }
     function call_printName_php(){
-        var result = "<?php printUser() ?>"
-        alert(result);
-        return false;
-    }
-    function UserTable()
-    {
-        closeNav();
-        var body = document.getElementById("UserTableBody");
-        body.innerHTML = "<tr>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Counter</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Username</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Email</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Password</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Rating</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Skills</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>"+
-            "</tr>";
+        <?php printUser() ?>
     }
 </script>
 <body>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a onclick="UserTable()">Users</a>
+        <a onclick="call_printName_php()">Users</a>
         <a href="#">Projects</a>
         <a href="#">Payments</a>
     </div>
