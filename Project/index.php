@@ -26,8 +26,9 @@
         $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob');";
         $insert = mysqli_query($connection, $insert_user);
         if($insert){
-            header("location: ".$_SERVER['PHP_SELF']);
             successSignUp();
+            header("location: ".$_SERVER['PHP_SELF']);
+
         }
     }
 
