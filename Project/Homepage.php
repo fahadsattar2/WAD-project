@@ -142,7 +142,7 @@ if(isset($_POST['sin_signin_btn']))
             border: 2px solid dodgerblue;
         }
 
-        .btn {
+/*        .btn {
             background-color: dodgerblue;
             color: white;
             padding: 15px 20px;
@@ -150,13 +150,13 @@ if(isset($_POST['sin_signin_btn']))
             cursor: pointer;
             width: 100%;
             opacity: 0.9;
-        }
+        }*/
 
         .btn:hover {
             opacity: 1;
         }
         body{
-            position: fixed;
+            background-image: url("Images/homepage.jpg");position: fixed;
             right: 0;
             bottom: 0;
             min-width: 100%;
@@ -172,13 +172,20 @@ if(isset($_POST['sin_signin_btn']))
             border-radius: 5px;
             text-align: left;
         }
+        #banner{
+            width: 60%;
+            padding: 2%;
+            color: white;
+            margin-top: 15%;
+            margin-left: 5%;
+        }
     </style>
 </head>
 
 <body>
 <div>
     <div>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -204,7 +211,7 @@ if(isset($_POST['sin_signin_btn']))
                 </div>
             </div>
 
-            <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
                 <span class="sr-only">Previous</span>
             </a>
@@ -212,8 +219,19 @@ if(isset($_POST['sin_signin_btn']))
             <a class="right carousel-control" href="#myCarousel" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Next</span>
-            </a>-->
+            </a>
         </div>
+    -->
+    <div id="DivButtons" style="top: 2%;position: fixed;right: 2%">
+        <button type="button" class="btn btn-light" id="RegisterBtn">Sign Up</button>
+        <button type="button" class="btn btn-light" id="LoginBtn">Login</button>
+    </div>
+
+        <div id="banner">
+            <h1>Find The Perfect Freelance Services For Your Business</h1>
+            <p id="messageBanner"></p>
+        </div>
+
         <div class="modal fade" id="LoginModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -342,6 +360,16 @@ if(isset($_POST['sin_signin_btn']))
                 $("#SignUpModal").modal();
             });
         });
+
+        var i = 0;
+        var messages = {"Message 1","Message 2","Message 3","Message 4","Message 5"};
+        slidingTexts();
+        function slidingTexts() {
+            var msgs = document.getElementById("messageBanner");
+            msgs.innerHTML = messages[i];
+            i++;
+            setTimeout(slidingTexts,3000);
+        }
     </script>
 
 </body>
