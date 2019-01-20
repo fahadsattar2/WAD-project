@@ -221,6 +221,7 @@ if(isset($_POST['sin_signin_btn']))
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form" method="post">
+                            <?php include ('Functions/errors.php'); ?>
                             <div class="input-container">
                                 <i class="fa fa-envelope icon"></i>
                                 <input class="input-field" type="email" placeholder="Email" name="lgn_email">
