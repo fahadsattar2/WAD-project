@@ -228,12 +228,12 @@ if(isset($_POST['sin_signin_btn']))
                             <?php include ('Functions/errors.php'); ?>
                             <div class="input-container">
                                 <i class="fa fa-envelope icon"></i>
-                                <input class="input-field" type="email" placeholder="Email" name="lgn_email">
+                                <input pattern="([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})" class="input-field" type="email" placeholder="Email" name="lgn_email">
                             </div>
 
                             <div class="input-container">
                                 <i class="fa fa-key icon"></i>
-                                <input class="input-field" type="password" placeholder="Password" name="lgn_pass">
+                                <input pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}" class="input-field" type="password" placeholder="Password" name="lgn_pass">
                             </div>
 
                             <div>
@@ -264,32 +264,32 @@ if(isset($_POST['sin_signin_btn']))
                             <?php include ('Functions/errors.php'); ?>
                             <div class="input-container">
                                 <i class="fa fa-user icon"></i>
-                                <input class="input-field" type="text" placeholder="Firstname" name="sgn_firstname" value="<?php echo $fname;?>">
+                                <input pattern="[A-Z]|[a-z]+" class="input-field" type="text" placeholder="Firstname" name="sgn_firstname" value="<?php echo $fname;?>">
                             </div>
 
                             <div class="input-container">
                                 <i class="fa fa-user icon"></i>
-                                <input class="input-field" type="text" placeholder="Lastname" name="sgn_lastname" value="<?php echo $lname;?>">
+                                <input pattern="[A-Z]|[a-z]+" class="input-field" type="text" placeholder="Lastname" name="sgn_lastname" value="<?php echo $lname;?>">
                             </div>
 
                             <div class="input-container">
                                 <i class="fa fa-envelope icon"></i>
-                                <input class="input-field" type="email" placeholder="Email" name="sgn_email" value="<?php echo $mail;?>">
+                                <input pattern="([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})" class="input-field" type="email" placeholder="Email" name="sgn_email" value="<?php echo $mail;?>">
                             </div>
 
                             <div class="input-container">
                                 <i class="fa fa-user icon"></i>
-                                <input class="input-field" type="date" name="sgn_dob" value="<?php echo $dob;?>">
+                                <input pattern="([0-9]{2})\/([1-9]{1}|[10-12]{2})\/([0-9]{4})" class="input-field" type="date" name="sgn_dob" value="<?php echo $dob;?>">
                             </div>
 
                             <div class="input-container">
                                 <i class="fa fa-key icon icon"></i>
-                                <input class="input-field" type="password" placeholder="Password" name="sgn_password">
+                                <input pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}" class="input-field" type="password" placeholder="Password" name="sgn_password">
                             </div>
 
                             <div class="input-container">
                                 <i class="fa fa-key icon"></i>
-                                <input class="input-field" type="password" placeholder="Confirm Password" name="sgn_cnfrmpass">
+                                <input pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}" class="input-field" type="password" placeholder="Confirm Password" name="sgn_cnfrmpass">
                             </div>
 
                             <div>
