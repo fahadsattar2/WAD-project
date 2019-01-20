@@ -7,7 +7,10 @@
     }
     if(isset($_POST['btn_img']))
     {
-        debug_to_console("Edit Image Selected");
+        $user_image = $_FILES['btn_image']['name'];
+        $user_image_tmp = $_FILES['btn_image']['tmp_name'];
+        move_uploaded_file($user_image_tmp,"product_images/$user_image");
+        
     }
 ?>
 
@@ -39,7 +42,7 @@
             <img src="Images/Dummy-Profile.png" class="circle" style="height:106px;width:106px" alt="Avatar">
           </p>
             <form method="post">
-            <button type="button" class="btn btn-primary" name = "btn_img"><i class="fa fa-pencil"></i>Edit Profile Picture</button>
+            <input type="file" class="btn btn-primary" name = "btn_img"><i class="fa fa-pencil"></i>Edit Profile Picture</input>
             </form>
             <hr>
           <p><i class="fa fa-pencil fa-fw"></i><b>Full Stack Developer</b></p>
