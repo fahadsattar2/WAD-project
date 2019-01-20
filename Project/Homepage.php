@@ -38,16 +38,20 @@ if(isset($_POST['sgn_signup_btn']))
     $pass = $_POST['sgn_password'];
     $dob = $_POST['sgn_dob'];
     $pass2 = $_POST['sgn_cnfrmpass'];
-    if(empty($fname)){
+    if(empty($fname))
+    {
         array_push($errors,"First name is required");
     }
-    if(empty($lname)){
+    if(empty($lname))
+    {
         array_push($errors,"Last name is required");
     }
-    if(empty($mail)){
+    if(empty($mail))
+    {
         array_push($errors,"Email is required");
     }
-    if(empty($pass)){
+    if(empty($pass))
+    {
         array_push($errors,"Password is required");
     }
     if(empty($dob)){
@@ -59,7 +63,7 @@ if(isset($_POST['sgn_signup_btn']))
     if(count($errors)==0)
     {
         $password=md5($pass);
-        $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob');";
+        $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB,Profile_image) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob','None');";
         $insert = mysqli_query($connection, $insert_user);
     }
 }
