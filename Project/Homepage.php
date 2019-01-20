@@ -2,7 +2,6 @@
     require_once "Server/db_connection.php";
     if(isset($_POST['sgn_signup_btn']))
     {
-        echo "Hello";
         $fname = $_POST['sgn_firstname'];
         $lname = $_POST['sgn_lastname'];
         $mail = $_POST['sgn_email'];
@@ -10,7 +9,8 @@
         $dob = $_POST['sgn_dob'];
         $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob');";
         $insert = mysqli_query($connection, $insert_user);
-        if($insert){
+        if($insert)
+        {
             header("location: ".$_SERVER['PHP_SELF']);
         }
     }
@@ -18,7 +18,6 @@
 
 <!DOCTYPE html>
 <html lang = "en">
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
