@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2019 at 04:31 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Jan 20, 2019 at 04:56 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -82,10 +82,21 @@ CREATE TABLE `user` (
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `password` int(30) NOT NULL,
-  `rating` float(5) NOT NULL,
-  `DOB` DATE NOT NULL
+  `password` varchar(30) NOT NULL,
+  `rating` decimal(2,1) NOT NULL,
+  `DOB` date NOT NULL,
+  `Profile_image` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `rating`, `DOB`, `Profile_image`) VALUES
+(1, 'Faisal', 'Jawad', 'faisaljawad1@gmail.com', 'classic', '0.0', '1996-10-01', ''),
+(2, 'Sana', 'Anjum', 'sanaaaanjum22@gmail.com', 'sanaanjum', '0.0', '1997-10-22', ''),
+(3, 'Rehan', 'Abid', 'rehan_abid@ucp.edu.pk', '123456', '0.0', '1997-09-21', ''),
+(4, 'Junaid', 'Ahmed', 'junaidkol09@gmail.com', '123456', '0.0', '1996-02-02', '');
 
 --
 -- Indexes for dumped tables
@@ -153,7 +164,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
