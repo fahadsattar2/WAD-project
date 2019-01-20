@@ -1,4 +1,19 @@
 <?php
+    function successSignUp()
+    {
+        echo"<div class=\"modal fade\" id=\"LoginModal\" role=\"dialog\">";
+        echo"<div class=\"modal-dialog\">";
+        echo"<div class=\"modal-content\">";
+        echo"<div class=\"modal-body\" style=\"padding:40px 50px;\">";
+        echo"</div>";
+        echo"<div class=\"modal-header\" style=\"padding:35px 50px;\">";
+        echo"<h4><span class=\"glyphicon glyphicon-log-ok\"></span>Sign Up was SuccessFul</h4>";
+        echo"</div>";
+        echo"<div class=\"modal-body\" style=\"padding:40px 50px;\"><button type=\"submit\" onclick=\"window.location.href='profile.html'\" class=\"btn\" name=\"btn_profileRedirect\">Take Me to My Profile</button></div>";
+        echo"</div>";
+        echo"</div>";
+        echo"</div>";
+    }
     require_once "Server/db_connection.php";
     if(isset($_POST['sgn_signup_btn']))
     {
@@ -12,8 +27,10 @@
         $insert = mysqli_query($connection, $insert_user);
         if($insert){
             header("location: ".$_SERVER['PHP_SELF']);
+            successSignUp();
         }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +45,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Welcome to Rack-Up</title>
     <style>
-        .modal-header,
-        h4,
-        .close {
+        .modal-header, h4, .close {
             /*background-color: black;*/
             color: black !important;
             text-align: center;
@@ -48,7 +63,7 @@
         }
 
         .icon {
-            padding: 10px;
+            padding: 3%;
             background: dodgerblue;
             color: white;
             min-width: 50px;
@@ -65,7 +80,6 @@
             border: 2px solid dodgerblue;
         }
 
-        /* Set a style for the submit button */
         .btn {
             background-color: dodgerblue;
             color: white;
@@ -79,11 +93,17 @@
         .btn:hover {
             opacity: 1;
         }
-
+        body{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
     </style>
 </head>
 
-<body style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%;">
+<body>
 <div>
     <div>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -107,28 +127,26 @@
             <div class="carousel-caption">
                 <div id="DivButtons">
                     <button type="button" class="btn btn-default btn-lg" id="LoginBtn">Login</button>
-                    <button type="button" class="btn btn-default btn-lg" id="RegisterBtn">Sign Up</button>
+                    <button type="button" class="btn btn-default btn-lg" id="RegisterBtn" style="margin-top: 1%;">Sign Up</button>
                 </div>
             </div>
         </div>
 
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
             <span class="sr-only">Previous</span>
         </a>
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
-        </a>
+        </a>-->
     </div>
-
     <div class="modal fade" id="LoginModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="padding:35px 50px;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                    <h4><span class="glyphicon glyphicon-log-in"></span> Login</h4>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
                     <form role="form">
@@ -140,6 +158,10 @@
                         <div class="input-container">
                             <i class="fa fa-key icon"></i>
                             <input class="input-field" type="password" placeholder="Password" name="lgn_pass">
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn" name="sin_signin_btn">Sign In</button>
                         </div>
                     </form>
                 </div>
@@ -158,7 +180,7 @@
 
                 <div class="modal-header" style="padding:35px 50px;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4><span class="glyphicon glyphicon-lock"></span> Sign Up</h4>
+                    <h4><span class="glyphicon glyphicon-user"></span> Sign Up</h4>
                 </div>
 
                 <div class="modal-body" style="padding:40px 50px;">
