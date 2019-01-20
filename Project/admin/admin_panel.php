@@ -18,7 +18,6 @@ function getUsers()
         $user_query = $_GET['SearchBar'];
         $getQuery = "select * from user where first_name like '%$user_query%'";
     }*/
-
     $getQuery = "select * from user";
     $getResult = mysqli_query($connection,$getQuery);
     $count_user = mysqli_num_rows($getResult);
