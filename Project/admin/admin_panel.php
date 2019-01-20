@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mmust
- * Date: 1/19/2019
- * Time: 4:16 PM
- */
+require_once "db_connection.php";
+
 function getSidePanel(){
     echo "<div id=\"SidePanel\" class=\"SideNavPanel\">";
     echo "<a class=\"closebtn\" onclick=\"closeNav()\">&times;</a>";
@@ -13,6 +9,41 @@ function getSidePanel(){
     echo "<a href=\"#\">Payment Options</a>";
     echo "</div>";
     echo "<div><button id=\"btnOpen\" onclick=\"openNav()\">&#9776;</button></div>";
+}
+function getUsers()
+{
+    global $connection;
+    $getQuery = '';
+    /*if(isset($_GET['SearchBar'])){
+        $user_query = $_GET['SearchBar'];
+        $getQuery = "select * from user where first_name like '%$user_query%'";
+    }*/
+    $getQuery = "select * from user";
+    $getResult = mysqli_query($connection,$getQuery);
+    $count_user = mysqli_num_rows($getResult);
+    if($count_user==0){
+        echo "<h4 class='alert-warning align-center my-2 p-2'> No Data Found </h4>";
+    }
+    while($row = mysqli_fetch_assoc($getResult)){
+        $counter = $row['id'];
+        $fname = $row['pro_title'];
+        $lname = $row['pro_price'];
+        $email = $row['pro_image'];
+        $password = $row[''];
+        $rating = $row[''];
+        $dob = $row[''];
+        echo "<tr>
+            <td class =\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\"><button>New</button></td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Counter</td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Username</td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Email</td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Password</td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Rating</td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Skills</td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Edit</td>
+            <td class=\"col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1\">Delete</td>
+            </tr>";
+    }
 }
 ?>
 
@@ -89,6 +120,9 @@ function getSidePanel(){
     <table id="mainBody" class="table table-bordered offset-2 offset-xl-2 offset-lg-2">
         <tr>
             <p><input type="text" id="SearchBar" placeholder="Search.."/></p>
+            <?php
+            getUsers();
+            ?>
         </tr>
     </table>
 </div>
