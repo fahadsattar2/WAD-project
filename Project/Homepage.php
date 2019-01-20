@@ -229,7 +229,9 @@ if(isset($_POST['sin_signin_btn']))
 
         <div id="banner">
             <h1>Find The Perfect Freelance Services For Your Business</h1>
-            <p id="messageBanner"></p>
+            <p id="messageBanner">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            </p>
         </div>
 
         <div class="modal fade" id="LoginModal" role="dialog">
@@ -360,7 +362,7 @@ if(isset($_POST['sin_signin_btn']))
                 $("#SignUpModal").modal();
             });
         });
-
+/*
         var i = 0;
         var messages = {"Message 1","Message 2","Message 3","Message 4","Message 5"};
         slidingTexts();
@@ -369,7 +371,7 @@ if(isset($_POST['sin_signin_btn']))
             msgs.innerHTML = messages[i];
             i++;
             setTimeout(slidingTexts,3000);
-        }
+        }*/
     </script>
 
 </body>
