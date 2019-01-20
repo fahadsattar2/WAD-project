@@ -1,5 +1,14 @@
 <?php
-
+    function debug_to_console( $data ) {
+        $output = $data;
+        if ( is_array( $output ) )
+            $output = implode( ',', $output);
+        echo "<script>console.log( 'Printing: " . $output . "' );</script>";
+    }
+    if(isset($_POST['btn_img']))
+    {
+        debug_to_console("Edit Image Selected");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -27,9 +36,12 @@
       <div class="card" style="text-align: center;">
         <div class="container">
           <p>
-            <img src="https://alencarfamilydentistry.com/wp-content/uploads/2017/08/Dummy-Profile.png" class="circle" style="height:106px;width:106px" alt="Avatar">
+            <img src="Images/Dummy-Profile.png" class="circle" style="height:106px;width:106px" alt="Avatar">
           </p>
-          <hr>
+            <form method="post">
+            <button type="button" class="btn btn-primary" name = "btn_img"><i class="fa fa-pencil"></i>Edit Profile Picture</button>
+            </form>
+            <hr>
           <p><i class="fa fa-pencil fa-fw"></i><b>Full Stack Developer</b></p>
           <p><i class="fa fa-home fa-fw"></i> Lahore, PK</p>
           <p><i class="fa fa-birthday-cake"></i> June 11, 1996</p>
