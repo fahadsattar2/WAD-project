@@ -1,5 +1,4 @@
 <?php
-
     require_once "db_connection.php";
 
     function printUser()
@@ -75,15 +74,30 @@
         }
     </style>
 </head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a onclick="call_printName_php()">Users</a>
+        <a href="#">Projects</a>
+        <a href="#">Payments</a>
+    </div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <table id="UserTableBody" class="table table-bordered offset-2 offset-xl-2 offset-lg-2">
+
+    </table>
+
+</body>
 <script>
-    function openNav() {
+    function openNav()
+    {
         document.getElementById("mySidenav").style.width = "250px";
     }
-
-    function closeNav() {
+    function closeNav()
+    {
         document.getElementById("mySidenav").style.width = "0";
     }
-    function call_printName_php(){
+    function call_printName_php()
+    {
         var result = "<?php printUser() ?>"
         alert(result);
         return false;
@@ -104,19 +118,6 @@
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>"+
             "</tr>";
     }
+
 </script>
-<body>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a onclick="UserTable()">Users</a>
-        <a href="#">Projects</a>
-        <a href="#">Payments</a>
-    </div>
-
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
-    <table id="UserTableBody" class="table table-bordered offset-2 offset-xl-2 offset-lg-2">
-    </table>
-
-</body>
 </html>
