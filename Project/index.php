@@ -27,7 +27,6 @@ require_once "Server/db_connection.php";
 $errors=array();
 if(isset($_POST['sgn_signup_btn']))
 {
-    debug_to_console("Hello");
     $fname = $_POST['sgn_firstname'];
     $lname = $_POST['sgn_lastname'];
     $mail = $_POST['sgn_email'];
@@ -60,14 +59,12 @@ if(isset($_POST['sgn_signup_btn']))
         if($insert){
             // successSignUp();
             //header('location: profile.php');
-
         }
-
     }
 }
+
 if(isset($_POST['sin_signin_btn']))
 {
-    debug_to_console("Sign-in Button clicked!!!!");
     $email=$_POST['lgn_email'];
     $pass=$_POST['lgn_pass'];
     if (empty($email)) {
@@ -82,6 +79,7 @@ if(isset($_POST['sin_signin_btn']))
         $results = mysqli_query($connection, $query);
         if (mysqli_num_rows($results) == 1)
         {
+            //debug_to_console("Sign-in Button clicked!!!!");
             header('location: profile.php');
         }
         else {
