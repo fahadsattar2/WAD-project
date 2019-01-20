@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <title>Rack Up</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,9 +72,9 @@
         .row.content {height: 450px}
 
         .sidenav {
-            padding-top: 20px;
+            padding-top: 2%;
             background-color: #f1f1f1;
-            height: 100%;
+            height: 100vh;
         }
         footer {
             position: fixed;
