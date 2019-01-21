@@ -152,13 +152,20 @@ if(isset($_POST['sin_signin_btn']))
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="padding:35px 50px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" id="close1" onclick="ClearLogErrors()" data-dismiss="modal">&times;</button>
                         <h4><span class="glyphicon glyphicon-log-in"></span> Login</h4>
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form" method="post">
+                            <div id="LogErrors">
                             <?php
                                  if (count($errors2)>0) {
+                                     echo "<script type='text/javascript'>
+                                           $(document).ready(function(){
+                                            $('#LoginModal').modal();
+                                            });
+                                            </script>";
+
                                      echo "<div class=\"error\" style=\"margin-bottom: 3%;\" >";
                                      for ($i = 0; $i < count($errors2); $i++) {
                                         echo "<li>".$errors2[$i]."</li>";
@@ -166,9 +173,10 @@ if(isset($_POST['sin_signin_btn']))
                                      echo "</div>";
                                  }
                             ?>
+                            </div>
                             <div class="input-container">
                                 <i class="fa fa-envelope icon"></i>
-                                <input pattern="([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})" class="input-field" type="email" placeholder="Email" name="lgn_email">
+                                <input pattern="([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})" class="input-field" type="email" placeholder="Email" name="lgn_email" id="lgn_email">
                             </div>
 
                             <div class="input-container">
@@ -195,14 +203,22 @@ if(isset($_POST['sin_signin_btn']))
                 <div class="modal-content">
 
                     <div class="modal-header" style="padding:35px 50px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" id="close2" onclick="ClearRegErrors()" data-dismiss="modal">&times;</button>
                         <h4><span class="glyphicon glyphicon-user"></span> Sign Up</h4>
                     </div>
 
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form" method="post">
+                            <div id="RegErrors">
                             <?php
                             if (count($errors)>0) {
+
+                                echo "<script type='text/javascript'>
+                                           $(document).ready(function(){
+                                            $('#SignUpModal').modal();
+                                            });
+                                            </script>";
+
                                 echo "<div class=\"error\" style=\"margin-bottom: 3%;\" >";
                                 for ($i = 0; $i < count($errors); $i++) {
                                     echo "<li>".$errors[$i]."</li>";
@@ -210,6 +226,7 @@ if(isset($_POST['sin_signin_btn']))
                                 echo "</div>";
                             }
                             ?>
+                            </div>
                             <div class="input-container">
                                 <i class="fa fa-user icon"></i>
                                 <input pattern="([a-zA-Z' ]+)" class="input-field" type="text" placeholder="Firstname" name="sgn_firstname" value="<?php echo $fname;?>">
@@ -276,6 +293,12 @@ if(isset($_POST['sin_signin_btn']))
                 $("#SignUpModal").modal();
             });
         });
+        function ClearLogErrors() {
+            document.getElementById('LogErrors').innerHTML = null;
+        }
+        function ClearRegErrors() {
+            document.getElementById('RegErrors').innerHTML = null;
+        }
     </script>
 </body>
 
