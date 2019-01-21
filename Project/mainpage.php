@@ -58,13 +58,36 @@ top_header(); ?>
             <hr>
             <h3>Test</h3>
             <p>
-                Yahan sare projects aa jain gay list wise
+                <div class="card" style="color: black" id="card-1" onclick="CardDetails(this.id)">
+                    <div class="card-header">
+                        <div class="row">
+                        <h5>
+                            Project ka name
+                        </h5>
+                        </div>
+                    </div>
+                    <div class="row card-body">
+                        <p class="col-xl-11">
+                            Project ki details
+                        </p>
+                        <p class="col-xl-1">
+                            <button>Bid</button>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <h6>
+                            price
+                        </h6>
+                    </div>
+                </div>
             </p>
         </div>
 
         <div class="col-sm-2 sidenav">
             <div>
-                <p>Clicked projects ki details yahan aa jain</p>
+                <p id="DetailsTab">
+
+                </p>
             </div>
         </div>
     </div>
@@ -73,6 +96,24 @@ top_header(); ?>
 <footer class="container-fluid text-center">
     <p>Footer Text</p>
 </footer>
+
+<script>
+    function CardDetails(x)
+    {
+        var details = document.getElementById("DetailsTab");
+        details.innerHTML = " <div class=\"card\" style=\"color: black\">"+
+            "<div class=\"card-header\">"+
+            "<div class=\"row\">"+
+            "<h5>" +
+            "Project ka name" +
+            "</h5>" +
+            "</div>" +
+            "</div>" +
+            "<div class=\"card-body\"> "+
+            "</div>"
+            "</div>";
+    }
+</script>
 
 </body>
 </html>
