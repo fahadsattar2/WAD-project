@@ -1,44 +1,24 @@
 <?php
 
-    require_once "db_connection.php";
+require_once "db_connection.php";
 
-        global $connection;
-        $getUserQuery = "select * from user where id = '1';";
-        $queryResult = mysqli_query($connection, $getUserQuery);
+function printUser()
+{
+    global $connection;
+    $getUserQuery = "select * from user";
+    $queryResult = mysqli_query($connection, $getUserQuery);
 
-        echo "<table class='table-bordered'><tr>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'><button>New</button></th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Counter</th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Username</th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Email</th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Password</th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>DOB</th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Ratings</th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Edit</th>
-             <th class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>Delete</th>
-             </tr>";
-
-        while ($row = mysqli_fetch_assoc($queryResult)) {
-            $counter = $row['id'];
-            $fname = $row['first_name'];
-            $lname = $row['last_name'];
-            $email = $row['email'];
-            $password = $row['password'];
-            $rating = $row['rating'];
-            $dob = $row['DOB'];
-            echo "<tr>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'><button type='submit'>". "New" ."</button></td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $counter ."</td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $fname." ".$lname ."</td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $email ."</td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $password ."</td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $dob ."</td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". $rating ."</td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". "Edit" ."</td>
-              <td class='col - xl - 1 col - lg - 1 col - md - 1 col - sm - 1 col - 1'>". "Delete" ."</td></tr>";
-        }
-
-        echo "</table>";
+    while ($row = mysqli_fetch_assoc($queryResult)) {
+        $counter = $row['id'];
+        $fname = $row['first_name'];
+        $lname = $row['last_name'];
+        $email = $row['email'];
+        $password = $row['password'];
+        $rating = $row['rating'];
+        $dob = $row['DOB'];
+        echo "<tr><td><button>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$dob</td><td><button>Edit</button></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,22 +84,35 @@
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
     }
-    function call_printName_php(){
-        <?php printUser() ?>
+    function UserTable()
+    {
+        closeNav();
+        var body = document.getElementById("UserTableBody");
+        body.innerHTML = "<tr>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Counter</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Username</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Email</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Password</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Rating</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Skills</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>"+
+            "</tr>";
+        document.getElementById("UserTableBody").innerHTML += "<?php printUser(); ?>";
+    }
+    function DeleteUser(){
     }
 </script>
 <body>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a onclick="call_printName_php()">Users</a>
-        <a href="#">Projects</a>
-        <a href="#">Payments</a>
-    </div>
-
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
-    <table id="UserTableBody" class="table table-bordered offset-2 offset-xl-2 offset-lg-2">
-    </table>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a onclick="UserTable()">Users</a>
+    <a href="#">Projects</a>
+    <a href="#">Payments</a>
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<table id="UserTableBody" class="table table-bordered"></table>
 
 </body>
 </html>
