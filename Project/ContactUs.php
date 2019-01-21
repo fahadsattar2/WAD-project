@@ -20,15 +20,9 @@
 
 <body class="background_image">
 
-    <form>
-        <div class="topnav">
-            <a href="Homepage.php" class="navbar-left" style="float: left;"><img src="Images/Rackup-Logo(100X35).png"></a>
-            <a href="aboutus.html"><i class="fas fa-book-reader"></i><span class="d-sm-none d-md-inline d-none"> About Us </span></a>
-            <a href="ContactUs.html"><i class="fas fa-phone"></i><span class="d-sm-none d-md-inline d-none"> Contact Us</span></a>
-            <a href="signup.html"><i class="fas fa-user-plus"></i><span class="d-sm-none d-md-inline d-none"> Signup</span></a>
-            <a href="Login.html"><i class="fa fa-fw fa-user"></i><span class="d-sm-none d-md-inline d-none"> Login</span></a>
-        </div>
-    </form>
+<?php
+include "Functions/functions.php";
+top_header(); ?>
 
     <div class="container body_font mt-5">
         <div class="form-row">

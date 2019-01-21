@@ -13,6 +13,7 @@
                         <button type=\"submit\">Submit</button>
                     </form>
                 </div>
+                
                 <a href=\"#profile\" style=\"float: right;\"><i class=\"fas fa-user-tie\"></i></a>
                 </div>";
     }
