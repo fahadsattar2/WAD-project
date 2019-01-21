@@ -22,33 +22,22 @@ function printUser()
 
 function printProjects()
 {
-    require_once "db_connection.php";
     global $connection;
-    $getQuery = "select * from projects";
-    $getQueryResult = mysqli_query($connection, $getQuery);
+    $Query = "select * from projects";
+    $QueryResult = mysqli_query($connection, $Query);
 
-    while($row = mysqli_fetch_assoc($getQueryResult))
+    while($row = mysqli_fetch_assoc($QueryResult))
     {
-        $proj_id = $row['Project_id'];
-        $proj_name = $row['Project_name'];
+        $ID = $row['Project_id'];
+        $Name = $row['Project_name'];
         $clt_id = $row['client_id'];
-        $proj_budget = $row['Budget'];
-        $proj_time = $row['Time'];
-        $proj_description = $row['Description'];
-        $proj_status = $row['status'];
-        echo "<tr>
-                <td><button>Expand</button></td>
-                <td>$proj_id</td>
-                <td>$proj_name</td>
-                <td>$clt_id</td>
-                <td>$proj_budget</td>
-                <td>$proj_time</td>
-                <td>$proj_description</td>
-                <td>$proj_status</td>
-                <td><button>Edit</button></td>
-                <td><button>Delete</button>
-                </td>
-             </tr>";
+        $budget = $row['Budget'];
+        $time = $row['Time'];
+        $desc = $row['Description'];
+        $status = $row['status'];
+
+        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td>$clt_id</td><td>$budget</td><td>$time</td><td>$desc</td><td>$status</td><td><button>Edit</button></td><td><button>Delete</button></td></tr>";
+
     }
 }
 
@@ -109,6 +98,19 @@ function printProjects()
         }
     </style>
 </head>
+<body>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a onclick="UserTable()">Users</a>
+    <a onclick="ProjectsTable()">Projects</a>
+    <a href="#">Categories</a>
+    <a href="#">Payments</a>
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<table id="MainTableBody" class="table table-bordered"></table>
+
+</body>
+
 <script>
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
@@ -150,18 +152,7 @@ function printProjects()
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>" +
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
             "</tr>";
+        document.getElementById("MainTableBody").innerHTML += "<?php printProjects(); ?>";
     }
 </script>
-<body>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a onclick="UserTable()">Users</a>
-    <a onclick="ProjectsTable()">Projects</a>
-    <a href="#">Categories</a>
-    <a href="#">Payments</a>
-</div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-<table id="MainTableBody" class="table table-bordered"></table>
-
-</body>
 </html>
