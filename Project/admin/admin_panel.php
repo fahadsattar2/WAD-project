@@ -16,9 +16,31 @@ function printUser()
         $password = $row['password'];
         $rating = $row['rating'];
         $dob = $row['DOB'];
-        echo "<tr><td><button>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$dob</td><td><button>Edit</button></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr>";
+        echo "<tr><td><button>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$rating</td><td>$dob</td><td><button>Edit</button></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr>";
     }
 }
+
+function printProjects()
+{
+    global $connection;
+    $Query = "select * from projects";
+    $QueryResult = mysqli_query($connection, $Query);
+
+    while($row = mysqli_fetch_assoc($QueryResult))
+    {
+        $ID = $row['Project_id'];
+        $Name = $row['Project_name'];
+        $clt_id = $row['client_id'];
+        $budget = $row['Budget'];
+        $time = $row['Time'];
+        $desc = $row['Description'];
+        $status = $row['status'];
+
+        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td>$clt_id</td><td>$budget</td><td>$time</td><td>$desc</td><td>$status</td><td><button>Edit</button></td><td><button>Delete</button></td></tr>";
+
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -76,6 +98,19 @@ function printUser()
         }
     </style>
 </head>
+<body>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a onclick="UserTable()">Users</a>
+    <a onclick="ProjectsTable()">Projects</a>
+    <a href="#">Categories</a>
+    <a href="#">Payments</a>
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<table id="MainTableBody" class="table table-bordered"></table>
+
+</body>
+
 <script>
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
@@ -87,32 +122,37 @@ function printUser()
     function UserTable()
     {
         closeNav();
-        var body = document.getElementById("UserTableBody");
+        var body = document.getElementById("MainTableBody");
         body.innerHTML = "<tr>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Counter</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Username</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Firstname</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Lastname</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Email</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Password</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Rating</th>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Skills</th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Date Of Birth</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>"+
             "</tr>";
-        document.getElementById("UserTableBody").innerHTML += "<?php printUser(); ?>";
+        document.getElementById("MainTableBody").innerHTML += "<?php printUser(); ?>";
     }
-    function DeleteUser(){
+    function ProjectsTable() {
+        closeNav();
+        var body = document.getElementById("MainTableBody");
+        body.innerHTML = "<tr>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project ID</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project Name</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Client ID</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project Budget</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project Time</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project Description</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project Status</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
+            "</tr>";
+        document.getElementById("MainTableBody").innerHTML += "<?php printProjects(); ?>";
     }
 </script>
-<body>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a onclick="UserTable()">Users</a>
-    <a href="#">Projects</a>
-    <a href="#">Payments</a>
-</div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-<table id="UserTableBody" class="table table-bordered"></table>
-
-</body>
 </html>
