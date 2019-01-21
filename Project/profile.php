@@ -1,16 +1,9 @@
 <?php
-    include "Functions/functions.php";
     function debug_to_console( $data ) {
         $output = $data;
         if ( is_array( $output ) )
             $output = implode( ',', $output);
         echo "<script>console.log( 'Printing: " . $output . "' );</script>";
-    }
-    if(isset($_POST['btn_img']))
-    {
-        $user_image = $_FILES['btn_image']['name'];
-        $user_image_tmp = $_FILES['btn_image']['tmp_name'];
-        move_uploaded_file($user_image_tmp,"product_images/$user_image");
     }
 ?>
 
@@ -31,6 +24,7 @@
 
 <body>
 <?php
+    include "Functions/functions.php";
     top_header(); ?>
 <!-- Page Container -->
 <div class="container-fluid my-5 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11 offset-1 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1">
@@ -54,7 +48,7 @@
       </div>
 
       <br>
-      <br>
+   <br>
 
       <!-- Skills -->
       <div class="card">
