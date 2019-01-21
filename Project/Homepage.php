@@ -300,6 +300,41 @@ if(isset($_POST['sin_signin_btn']))
             document.getElementById('RegErrors').innerHTML = null;
         }
     </script>
+
+    <footer id="footer">
+
+        <div class="footer-main">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span4">
+                        <div class="footer-desc">
+                            <p>Top-skilled freelancers and the essentials to find and work with them. Personalized assistance to help you find premium, pre-vetted talent. End-to-end technology and service solution customized to fit your company.</p>
+                        </div>
+                    </div>
+                    <div class="span3">
+                        <div class="footer-contact">
+                            <h4 class="text-left">Contact</h4>
+                            <p>UCP, Johar Town, Lahore, Pakistan</p>
+                            <p><i class="fa fa-phone-square"></i>Phone: +92-42-35880007</p>
+                            <p><i class="fa fa-envelope"></i>
+                                E-mail: <a class="mail-link" href="mailto:rehan_abid@ucp.edu.pk">rehan_abid@ucp.edu.pk</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-foot">
+            <div class="container-fluid">
+                <p class="text-center m-lg-top-bottom">
+                    <small>© 2018 - 2019 RackUp® Global Inc.</small>
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
 </body>
 
 </html>
