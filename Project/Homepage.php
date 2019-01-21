@@ -100,7 +100,6 @@ if(isset($_POST['sin_signin_btn']))
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -115,22 +114,6 @@ if(isset($_POST['sin_signin_btn']))
     <link rel="stylesheet" href="css/style.css">
     <title>Welcome to Rack-Up</title>
     <style>
-        .modal-header, h4, .close {
-            /*background-color: black;*/
-            color: black !important;
-            text-align: center;
-            font-size: 30px;
-        }
-        .modal-footer {
-            /*background-color: black;*/
-        }
-
-        .input-container {
-            display: -ms-flexbox; /* IE10 */
-            display: flex;
-            width: 100%;
-            margin-bottom: 15px;
-        }
 
         .icon {
             padding: 3%;
@@ -139,30 +122,6 @@ if(isset($_POST['sin_signin_btn']))
             min-width: 50px;
             text-align: center;
         }
-
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            outline: none;
-        }
-
-        .input-field:focus {
-            border: 2px solid dodgerblue;
-        }
-
-/*        .btn {
-            background-color: dodgerblue;
-            color: white;
-            padding: 15px 20px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            opacity: 0.9;
-        }*/
-
-        .btn:hover {
-            opacity: 1;
-        }
         body{
             background-image: url("Images/homepage.jpg");position: fixed;
             right: 0;
@@ -170,66 +129,13 @@ if(isset($_POST['sin_signin_btn']))
             min-width: 100%;
             min-height: 100%;
         }
-        .error {
-            width: 92%;
-            margin: 0px auto;
-            padding: 10px;
-            border: 1px solid #a94442;
-            color: #a94442;
-            background: #f2dede;
-            border-radius: 5px;
-            text-align: left;
-        }
-        #banner{
-            width: 60%;
-            padding: 2%;
-            color: white;
-            margin-top: 15%;
-            margin-left: 5%;
-        }
     </style>
 </head>
 
 <body>
 <div>
     <div>
-        <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img class="Bimages" src="Images/wallpaper%20(1).jpg" alt="FreeLancer">
-                </div>
 
-                <div class="item">
-                    <img class="Bimages" src="Images/wallpaper%20(2).jpg" alt="FreeLancer2">
-                </div>
-
-                <div class="item">
-                    <img class="Bimages" src="Images/wallpaper%20(3).jpg" alt="FreeLancer2">
-                </div>
-                <div class="carousel-caption">
-                    <div id="DivButtons">
-                        <button type="button" class="btn btn-default btn-lg" id="LoginBtn">Login</button>
-                        <button type="button" class="btn btn-default btn-lg" id="RegisterBtn" style="margin-top: 1%;">Sign Up</button>
-                    </div>
-                </div>
-            </div>
-
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    -->
     <div id="DivButtons" style="top: 2%;position: fixed;right: 2%">
         <button type="button" class="btn btn-light" id="RegisterBtn">Sign Up</button>
         <button type="button" class="btn btn-light" id="LoginBtn">Login</button>
@@ -246,13 +152,20 @@ if(isset($_POST['sin_signin_btn']))
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="padding:35px 50px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" id="close1" onclick="ClearLogErrors()" data-dismiss="modal">&times;</button>
                         <h4><span class="glyphicon glyphicon-log-in"></span> Login</h4>
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form" method="post">
+                            <div id="LogErrors">
                             <?php
                                  if (count($errors2)>0) {
+                                     echo "<script type='text/javascript'>
+                                           $(document).ready(function(){
+                                            $('#LoginModal').modal();
+                                            });
+                                            </script>";
+
                                      echo "<div class=\"error\" style=\"margin-bottom: 3%;\" >";
                                      for ($i = 0; $i < count($errors2); $i++) {
                                         echo "<li>".$errors2[$i]."</li>";
@@ -260,9 +173,10 @@ if(isset($_POST['sin_signin_btn']))
                                      echo "</div>";
                                  }
                             ?>
+                            </div>
                             <div class="input-container">
                                 <i class="fa fa-envelope icon"></i>
-                                <input pattern="([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})" class="input-field" type="email" placeholder="Email" name="lgn_email">
+                                <input pattern="([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})" class="input-field" type="email" placeholder="Email" name="lgn_email" id="lgn_email">
                             </div>
 
                             <div class="input-container">
@@ -289,14 +203,22 @@ if(isset($_POST['sin_signin_btn']))
                 <div class="modal-content">
 
                     <div class="modal-header" style="padding:35px 50px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" id="close2" onclick="ClearRegErrors()" data-dismiss="modal">&times;</button>
                         <h4><span class="glyphicon glyphicon-user"></span> Sign Up</h4>
                     </div>
 
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form" method="post">
+                            <div id="RegErrors">
                             <?php
                             if (count($errors)>0) {
+
+                                echo "<script type='text/javascript'>
+                                           $(document).ready(function(){
+                                            $('#SignUpModal').modal();
+                                            });
+                                            </script>";
+
                                 echo "<div class=\"error\" style=\"margin-bottom: 3%;\" >";
                                 for ($i = 0; $i < count($errors); $i++) {
                                     echo "<li>".$errors[$i]."</li>";
@@ -304,6 +226,7 @@ if(isset($_POST['sin_signin_btn']))
                                 echo "</div>";
                             }
                             ?>
+                            </div>
                             <div class="input-container">
                                 <i class="fa fa-user icon"></i>
                                 <input pattern="([a-zA-Z' ]+)" class="input-field" type="text" placeholder="Firstname" name="sgn_firstname" value="<?php echo $fname;?>">
@@ -370,18 +293,13 @@ if(isset($_POST['sin_signin_btn']))
                 $("#SignUpModal").modal();
             });
         });
-/*
-        var i = 0;
-        var messages = {"Message 1","Message 2","Message 3","Message 4","Message 5"};
-        slidingTexts();
-        function slidingTexts() {
-            var msgs = document.getElementById("messageBanner");
-            msgs.innerHTML = messages[i];
-            i++;
-            setTimeout(slidingTexts,3000);
-        }*/
+        function ClearLogErrors() {
+            document.getElementById('LogErrors').innerHTML = null;
+        }
+        function ClearRegErrors() {
+            document.getElementById('RegErrors').innerHTML = null;
+        }
     </script>
-
 </body>
 
 </html>
