@@ -1,11 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mmust
- * Date: 1/20/2019
- * Time: 5:55 PM
- */
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,20 +88,9 @@
 </head>
 <body>
 
-<div class="topnav col">
-    <a href="#">Logo</a>
-    <a class="active" href="#">Home</a>
-    <a href="#">Projects</a>
-    <a href="#">About Us</a>
-    <a href="#">Contact Us</a>
-    <div class="search-container">
-        <form>
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-    <a href="#profile" style="float: right;"><i class="fas fa-user-tie"></i></a>
-</div>
+<?php
+include "Functions/functions.php";
+top_header(); ?>
 
 <div class="container-fluid text-center">
     <div class="row content">
