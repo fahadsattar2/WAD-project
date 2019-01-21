@@ -55,7 +55,8 @@ function printProjects()
 
     <style>
         body {
-            font-family: "Ubuntu";
+            font-family: "Lato", sans-serif;
+            transition: background-color .5s;
         }
 
         .sidenav {
@@ -92,6 +93,11 @@ function printProjects()
             margin-left: 50px;
         }
 
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
         @media screen and (max-height: 450px) {
             .sidenav {padding-top: 15px;}
             .sidenav a {font-size: 18px;}
@@ -114,10 +120,12 @@ function printProjects()
 <script>
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
     }
 
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
+        document.body.style.backgroundColor = "white";
     }
     function UserTable()
     {
