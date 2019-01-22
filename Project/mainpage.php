@@ -93,8 +93,12 @@ top_header(); ?>
     </div>
 </div>
 
-<footer class="container-fluid text-center">
-    <p>Footer Text</p>
+<footer id="footer">
+
+    <?php
+    web_footer();
+    ?>
+
 </footer>
 
 <script>
@@ -114,6 +118,8 @@ top_header(); ?>
             "</div>";
     }
 </script>
+
+
 
 </body>
 </html>

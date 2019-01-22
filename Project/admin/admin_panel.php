@@ -41,6 +41,21 @@ function printProjects()
     }
 }
 
+function printCategories()
+{
+    global $connection;
+    $Query = "select * from category";
+    $QueryResult = mysqli_query($connection, $Query);
+
+    while($row = mysqli_fetch_assoc($QueryResult))
+    {
+        $ID = $row['category_id'];
+        $Name = $row['category_name'];
+
+        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td><button>Edit</button></td><td><button>Delete</button></td></tr>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +64,8 @@ function printProjects()
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
@@ -105,15 +122,24 @@ function printProjects()
     </style>
 </head>
 <body>
+
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a onclick="UserTable()">Users</a>
     <a onclick="ProjectsTable()">Projects</a>
-    <a href="#">Categories</a>
+    <a onclick="CategoriesTable()">Categories</a>
     <a href="#">Payments</a>
 </div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 <table id="MainTableBody" class="table table-bordered"></table>
+
+<div class="modal fade" id="SignUpModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 
 </body>
 
@@ -161,6 +187,18 @@ function printProjects()
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
             "</tr>";
         document.getElementById("MainTableBody").innerHTML += "<?php printProjects(); ?>";
+    }
+    function CategoriesTable() {
+        closeNav();
+        var body = document.getElementById("MainTableBody");
+        body.innerHTML = "<tr>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Category ID</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Cetegory Name</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
+            "</tr>";
+        document.getElementById("MainTableBody").innerHTML += "<?php printCategories(); ?>";
     }
 </script>
 </html>

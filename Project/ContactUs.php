@@ -98,4 +98,13 @@ top_header(); ?>
             </div>
         </div>
     </div>
+
+<footer id="footer">
+
+    <?php
+        web_footer();
+    ?>
+
+</footer>
+
 </body>
