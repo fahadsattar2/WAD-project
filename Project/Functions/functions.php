@@ -19,22 +19,25 @@
     function web_footer()
     {
         echo "<div class=\"footer-main\">
-        <div class=\"container-fluid\">
-            <div class=\"row-fluid\">
-                <div class=\"span4\">
-                    <div class=\"footer-desc\">
-                        <p>Top-skilled freelancers and the essentials to find and work with them. Personalized assistance to help you find premium, pre-vetted talent. End-to-end technology and service solution customized to fit your company.</p>
-                    </div>
+        <div class=\"container\">
+            <div class=\"row\">
+                <div class=\"span4 col\">
+                    <h3>Description</h3>
+                    <p>Top-skilled freelancers and the essentials to find and work with them. 
+                    Personalized assistance to help you find premium, pre-vetted talent. 
+                    End-to-end technology and service solution customized to fit your company.</p>
                 </div>
-                <div class=\"span3\">
-                    <div class=\"footer-contact\">
-                        <h4 class=\"text-left\">Contact</h4>
-                        <p>UCP, Johar Town, Lahore, Pakistan</p>
-                        <p><i class=\"fa fa-phone-square\"></i>Phone: +92-42-35880007</p>
-                        <p><i class=\"fa fa-envelope\"></i>
-                            E-mail: <a class=\"mail-link\" href=\"mailto:rehan_abid@ucp.edu.pk\">rehan_abid@ucp.edu.pk</a>
-                        </p>
+                    <div class='col'>
+                        <h3>About Us</h3>
+                        <a href='./aboutus.php'>About Us</a>
                     </div>
+                <div class=\"span3 col\">
+                    <h3>Contact</h3>
+                    <p>UCP, Johar Town, Lahore, Pakistan</p>
+                    <p><i class=\"fa fa-phone-square\"></i>Phone: +92-42-35880007</p>
+                    <p><i class=\"fa fa-envelope\"></i>
+                        E-mail: <a class=\"mail-link\" href=\"mailto:rehan_abid@ucp.edu.pk\">rehan_abid@ucp.edu.pk</a>
+                    </p>
                 </div>
             </div>
         </div>
