@@ -117,6 +117,12 @@ top_header(); ?>
 
 
 </div>
+<footer id="footer">
 
+    <?php
+    web_footer();
+    ?>
+
+</footer>
 </body>
 </html>

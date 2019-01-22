@@ -142,5 +142,13 @@ top_header(); ?>
     <!-- End Page Container -->
 </div>
 
+<footer id="footer">
+
+    <?php
+    web_footer();
+    ?>
+
+</footer>
+
 </body>
 </html>
