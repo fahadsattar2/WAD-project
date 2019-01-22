@@ -117,6 +117,7 @@ top_header(); ?>
 
 
 </div>
+</body>
 <footer id="footer">
 
     <?php
@@ -124,5 +125,4 @@ top_header(); ?>
     ?>
 
 </footer>
-</body>
 </html>
