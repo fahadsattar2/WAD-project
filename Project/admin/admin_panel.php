@@ -130,6 +130,10 @@ function printCategories()
     <a href="#">Payments</a>
 </div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<div id="EditingHead">
+
+</div>
+
 <table id="MainTableBody" class="table table-bordered"></table>
 
 <div id="content">
@@ -159,7 +163,7 @@ function printCategories()
         closeNav();
         var body = document.getElementById("MainTableBody");
         body.innerHTML = "<tr>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><a href=\"newUser.php?\">New</a></th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Counter</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Firstname</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Lastname</th>"+
