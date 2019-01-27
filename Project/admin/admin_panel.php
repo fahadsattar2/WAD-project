@@ -16,7 +16,7 @@ function printUser()
         $password = $row['password'];
         $rating = $row['rating'];
         $dob = $row['DOB'];
-        echo "<tr><td><button>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$rating</td><td>$dob</td><td><button>Edit</button></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr>";
+        echo "<tr><td><button>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$rating</td><td>$dob</td><td><a href=editUsers.php?id=$counter><button>Edit</button></a></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr>";
     }
 }
 
@@ -133,14 +133,16 @@ function printCategories()
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 <table id="MainTableBody" class="table table-bordered"></table>
 
-<div class="modal fade" id="SignUpModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-        </div>
+<div id="content">
+    <div class="container">
+        <h2 class="text-center text-primary"></h2>
+        <?php
+        if(isset($_GET['editUsers'])){
+            include ('editUsers.php');
+        }
+        ?>
     </div>
 </div>
-
 </body>
 
 <script>
