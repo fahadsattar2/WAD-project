@@ -1,4 +1,5 @@
 <?php
+session_start();
 function debug_to_console( $data ) {
     $output = $data;
     if ( is_array( $output ) )
@@ -63,7 +64,8 @@ if(isset($_POST['sin_signin_btn']))
 {
     $email=$_POST['lgn_email'];
     $pass=$_POST['lgn_pass'];
-    if (empty($email)) {
+    if (empty($email))
+    {
         array_push($errors2, "Email is required");
     }
     if (empty($pass)) {
@@ -73,14 +75,24 @@ if(isset($_POST['sin_signin_btn']))
         $password = md5($pass);
         $query = "SELECT * FROM user WHERE email='$email' AND password='$pass'";
         $results = mysqli_query($connection, $query);
-        if (mysqli_num_rows($results) == 1)
+        if (mysqli_num_rows($results) == 0)
         {
-            //debug_to_console("Sign-in Button clicked!!!!");
-            header('location: profile.php');
-        }
-        else {
             array_push($errors2, "Wrong username/password combination");
         }
+        else
+            {
+            $_SESSION['user_email'] = $email;
+            if(!empty($_POST['remember'])) {
+                setcookie('user_email', $email, time() + (10 * 365 * 24 * 60 * 60));
+                setcookie('user_pass', $pass, time() + (10 * 365 * 24 * 60 * 60));
+            } else {
+                setcookie('user_email','' );
+                setcookie('user_pass', '');
+            }
+            header('location:profile.php?logged_in=You have successfully logged in!');
+            //header('location: profile.php');
+        }
+
     }
 }
 
@@ -175,6 +187,10 @@ if(isset($_POST['close2']))
                         <div class="input-container">
                             <i class="fa fa-key icon"></i>
                             <input class="input-field" type="password" placeholder="Password" name="lgn_pass">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                            <label class="form-check-label" for="remember">Remember me</label>
                         </div>
                         <div>
                             <button type="submit" class="modalButtons" name="sin_signin_btn">Sign In</button>

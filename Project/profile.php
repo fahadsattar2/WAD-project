@@ -1,10 +1,23 @@
 <?php
+require_once "Server/db_connection.php";
+session_start();
 function debug_to_console( $data ) {
     $output = $data;
     if ( is_array( $output ) )
         $output = implode( ',', $output);
     echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 }
+
+global $connection;
+$output = $_SESSION['user_email'];
+echo "<script>console.log( 'Printing: " . $output . "' );</script>";
+$query = "SELECT * FROM user WHERE email='$output'";
+$QueryResult = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($QueryResult);
+$f_name = $row['first_name'];
+$lname = $row['last_name'];
+echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";
+echo "<script>console.log( 'Last Name: " . $lname . "' );</script>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +87,7 @@ top_header(); ?>
             <div class="col m12">
                 <div class="card">
                     <div class="container" style="margin: 1%;margin-bottom: 2%;">
-                        <h2><b>Muhammad Mustaqeem</b></h2>
+                        <h2><b><?php echo $f_name." ".$lname ?></b></h2>
                         <!-- Yahan php function aye ga DB say Fetch Name  -->
                         <h1 style="color: green">
                             <span><b>.</b></span>
