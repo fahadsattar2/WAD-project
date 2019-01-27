@@ -199,7 +199,7 @@ if(isset($_POST['close2']))
                 </div>
                 <div class="modal-footer">
                     <p>Not a member? <a href="#" id="LogInRedirecter" data-dismiss="modal">Sign Up</a></p>
-                    <p>Forgot <a href="#">Password?</a></p>
+                    <p>Forgot <a href="#" id="ForgotPaswordRedirector" data-dismiss="modal" >Password?</a></p>
                 </div>
             </div>
         </div>
@@ -261,8 +261,44 @@ if(isset($_POST['close2']))
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ForgotPasswordModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                    <button type="button" id="close1" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-log-in"></span> Forgot Password</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                        <div class="input-container">
+                            <i class="fa fa-envelope icon"></i>
+                            <input pattern="^[a-zA-Z][a-zA-Z0-9._%+-]+@[a-z.-]+\.[a-z]{2,4}" class="input-field" type="email" placeholder="Email" name="lgn_email">
+                        </div>
+                        <div class="input-container">
+                            <i class="fa fa-key icon"></i>
+                            <input class="input-field" type="password" placeholder="Last Remembered Password" name="fgtPass">
+                        </div>
+
+                        <div class="input-container">
+                        <i class="fa fa-key icon"></i>
+                        <input class="input-field" type="password" placeholder="Last Remembered Password" name="fgtPass2">
+                    </div>
+                        <div>
+                            <button type="submit" class="modalButtons" name="sin_signin_btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script>
+    $(document).ready(function() {
+        $("#ForgotPaswordRedirector").click(function() {
+            $("#ForgotPasswordModal").modal();
+        });
+    });
     $(document).ready(function() {
         $("#LoginBtn").click(function() {
             $("#LoginModal").modal();
