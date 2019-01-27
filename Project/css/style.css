@@ -96,13 +96,6 @@
     padding-top: 2%;
     color: white;
     background-color: #1a6785;
-    height: 100vh;
-}
-footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #354763;
-    color: white;
+    height: 100%;
 }
 

@@ -7,7 +7,7 @@
                 <a class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\" href=\"#\">Projects</a>
                 <div class=\"search-container col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3\">
                     <form>
-                        <input class=\"search-container col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8\" type=\"text\" placeholder=\"Search..\" name=\"search\">
+                        <input class=\"search-container col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8\" type=\"text\" placeholder=\"Search..\" id=\"search-bar\" name=\"search-bar\" onkeyup=\"searchResult(this.value)\">
                         <button class=\"col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3\" type=\"submit\">Submit</button>
                     </form>
                 </div>
@@ -19,7 +19,7 @@
     function web_footer()
     {
         echo "<div class=\"footer-main\">
-        <div class=\"container\">
+        <div class=\"container-fluid\">
             <div class=\"row\">
                 <div class=\"span4 col\">
                     <h3>Description</h3>
@@ -46,7 +46,7 @@
     <div class=\"footer-foot\">
         <div class=\"container-fluid\">
             <p class=\"text-center m-lg-top-bottom\">
-                <small>© 2018 - 2019 RackUp® Global Inc.</small>
+                <small>&copy 2018 - 2019 RackUp® Global Inc.</small>
             </p>
         </div>
     </div>";
