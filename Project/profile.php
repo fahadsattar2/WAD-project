@@ -15,9 +15,13 @@ $query = "SELECT * FROM user WHERE email='$output'";
 $QueryResult = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($QueryResult);
 $f_name = $row['first_name'];
-$lname = $row['last_name'];
-echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";
-echo "<script>console.log( 'Last Name: " . $lname . "' );</script>";
+$l_name = $row['last_name'];
+$date_birth = $row['DOB'];
+$title_user = $row['Title'];
+$location_user = $row['Location'];
+// echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";
+// echo "<script>console.log( 'Last Name: " . $lname . "' );</script>";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,9 +55,9 @@ top_header(); ?>
                        <input type="file" class="btn btn-primary" name = "btn_img"><i class="fa fa-pencil"></i>Edit Profile Picture</input>
                        </form>-->
                     <hr>
-                    <p><i class="fa fa-pencil fa-fw"></i><b>Full Stack Developer</b></p>
-                    <p><i class="fa fa-home fa-fw"></i> Lahore, PK</p>
-                    <p><i class="fa fa-birthday-cake"></i> June 11, 1996</p>
+                    <p><i class="fa fa-pencil fa-fw"></i><b><?php echo $title_user?></b></p>
+                    <p><i class="fa fa-home fa-fw"></i> <?php echo $location_user ?></p>
+                    <p><i class="fa fa-birthday-cake"></i> <?php echo $date_birth?></p>
                 </div>
             </div>
             <br>
@@ -87,7 +91,7 @@ top_header(); ?>
             <div class="col m12">
                 <div class="card">
                     <div class="container" style="margin: 1%;margin-bottom: 2%;">
-                        <h2><b><?php echo $f_name." ".$lname ?></b></h2>
+                        <h2><b><?php echo $f_name." ".$l_name ?></b></h2>
                         <!-- Yahan php function aye ga DB say Fetch Name  -->
                         <h1 style="color: green">
                             <span><b>.</b></span>
