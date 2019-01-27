@@ -72,7 +72,6 @@ function printCategories()
 
     <style>
         body {
-            font-family: "Lato", sans-serif;
             transition: background-color .5s;
         }
 
@@ -124,7 +123,7 @@ function printCategories()
 <body>
 
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="closebtn" onclick="closeNav()">&times;</a>
     <a onclick="UserTable()">Users</a>
     <a onclick="ProjectsTable()">Projects</a>
     <a onclick="CategoriesTable()">Categories</a>
@@ -135,12 +134,12 @@ function printCategories()
 
 <div id="content">
     <div class="container">
-        <h2 class="text-center text-primary"></h2>
-        <?php
-        if(isset($_GET['editUsers'])){
-            include ('editUsers.php');
-        }
-        ?>
+     <h2 class="text-center text-primary"><?php echo @$_GET['logged_in']?></h2>
+            <?php
+            if(isset($_GET['editUsers'])){
+                include ('editUsers.php');
+            }
+            ?>
     </div>
 </div>
 </body>

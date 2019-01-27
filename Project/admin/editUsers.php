@@ -18,32 +18,31 @@ if(isset($_GET['id']))
     $UImg = $row['Profile_image'];
 }
 
-if(isset($_GET['update_user']))
+if(isset($_POST['btn_update_user']))
 {
-    $updated_fname = $row['first_name'];
-    $updated_lname = $row['last_name'];
-    $updated_email = $row['email'];
-    $updated_pwd = $row['password'];
-    $updated_rating = $row['rating'];
-    $updated_dob = $row['DOB'];
-    $updated_Img = $row['Profile_image'];
+    $updated_fname = $_POST['User_first_name'];
+    $updated_lname = $_POST['User_last_name'];
+    $updated_email = $_POST['User_Email'];
+    $updated_pwd = $_POST['User_password'];
+    //$updated_rating = $_POST['rating'];
+    $updated_dob = $_POST['User_dob'];
 
-    $update_product = "update products set first_name = '$updated_fname', 
-                                        last_name = '$updated_lname',
-                                        email = '$updated_email' ,
-                                        password = '$updated_pwd',
-                                        rating = '$updated_rating',
-                                        DOB = '$updated_dob',
-                                        where pro_id='$Uid'";
+    $query = "update user set first_name = '$updated_fname',
+                              last_name = '$updated_lname',
+                              email = '$updated_email',
+                              password = '$updated_pwd',
+                              DOB = '$updated_dob'
+                              where id='$Uid'";
 
-    $run_cat = mysqli_query($con, $get_cat);
-
-    if($run_cat){
-        header("location: index.php?view_categories");
+    $run = mysqli_query($connection, $query);
+    if($run)
+    {
+        header("location: admin_panel.php?");
     }
 }
 
 ?>
+
 <h1>User ID : <?php echo $Uid ?></h1>
 <div class="row">
     <div class="offset-md-2 col-md-8">
@@ -60,7 +59,7 @@ if(isset($_GET['update_user']))
             </div>
 
             <div class="form-group row">
-                <label class="col-form-label col-sm-4 col-lg-3 d-none d-sm-block" for="User_first_name">Last name</label>
+                <label class="col-form-label col-sm-4 col-lg-3 d-none d-sm-block" for="User_last_name">Last name</label>
                 <div class="col-12 col-sm-8 col-lg-9">
                     <input class="form-control" type="text" id="User_last_name" name="User_last_name" placeholder="Last Name"
                            value="<?php echo $lname;?>">
@@ -84,7 +83,7 @@ if(isset($_GET['update_user']))
             </div>
 
             <div class="form-group row">
-                <label class="col-form-label col-sm-4 col-lg-3 d-none d-sm-block" for="User_dob">Rating </label>
+                <label class="col-form-label col-sm-4 col-lg-3 d-none d-sm-block" for="User_dob">Date of Birth </label>
                 <div class="col-12 col-sm-8 col-lg-9">
                     <input class="form-control" type="text" id="User_dob" name="User_dob" placeholder="Date of Birth"
                            value="<?php echo $Udob;?>">
@@ -93,7 +92,7 @@ if(isset($_GET['update_user']))
 
             <div class="form-group row">
                 <div class="offset-sm-3 col-12 col-sm-6">
-                    <input class="btn btn-block btn-primary btn-lg" type="submit" id="update_user" name="update_user"
+                    <input class="btn btn-block btn-primary btn-lg" type="submit" id="btn_update_user" name="btn_update_user"
                            value="Update User">
                 </div>
             </div>

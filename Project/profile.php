@@ -1,6 +1,9 @@
 <?php
 require_once "Server/db_connection.php";
 session_start();
+if(!isset($_SESSION['user_email'])){
+    header('location: Homepage.php?Login_Status=You are not Logged In!');
+}
 function debug_to_console( $data ) {
     $output = $data;
     if ( is_array( $output ) )
@@ -36,6 +39,15 @@ $location_user = $row['Location'];
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #354763;
+        color: white;
+        text-align: center;
+    }
 </style>
 <body>
 <?php
@@ -61,17 +73,20 @@ top_header(); ?>
                 </div>
             </div>
             <br>
-
             <!-- Skills -->
             <div class="card">
                 <div class="container">
                     <p>Skills</p>
                     <ul>
-                        <li class="tag small">C++</li>
-                        <li class="tag small">C#</li>
-                        <li class="tag small">Word Processing</li>
-                        <li class="tag small">Games</li>
-                        <li class="tag small">Programming</li>
+                    <?php
+                        $query = "SELECT skill_name FROM user,skills,user_skills WHERE email= '$output' and user.id = user_skills.user_id and user_skills.skill_id = skills.skill_id";
+                        $QueryResult = mysqli_query($connection, $query);
+                        while($row = mysqli_fetch_assoc($QueryResult))
+                        {
+                            $skillName = $row['skill_name'];
+                            echo "<li class=\"tag small\">$skillName</li>";
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -159,7 +174,7 @@ top_header(); ?>
     <!-- End Page Container -->
 </div>
 
-<footer id="footer">
+<footer id="webfooter">
 
     <?php
     web_footer();

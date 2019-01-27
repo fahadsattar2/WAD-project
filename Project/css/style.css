@@ -3,7 +3,6 @@
     text-align: center;
     font-size: 30px;
 }
-
 .input-container {
     display: -ms-flexbox; /* IE10 */
     display: flex;
@@ -98,4 +97,12 @@
     background-color: #1a6785;
     height: 100%;
 }
-
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #354763;
+    color: white;
+    text-align: center;
+}
