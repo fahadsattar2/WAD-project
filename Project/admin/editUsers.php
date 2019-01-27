@@ -24,7 +24,6 @@ if(isset($_POST['btn_update_user']))
     $updated_lname = $_POST['User_last_name'];
     $updated_email = $_POST['User_Email'];
     $updated_pwd = $_POST['User_password'];
-    //$updated_rating = $_POST['rating'];
     $updated_dob = $_POST['User_dob'];
 
     $query = "update user set first_name = '$updated_fname',
@@ -55,8 +54,12 @@ if(isset($_POST['btn_update_user']))
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="container">
+<div class="card">
+
+    <div class="card-header">
 <h1>User ID : <?php echo $Uid ?></h1>
-<div class="row">
+</div>
+<div class="row card-body">
     <div class="offset-md-2 col-md-8">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group row">
@@ -111,6 +114,7 @@ if(isset($_POST['btn_update_user']))
 
         </form>
     </div>
+</div>
 </div>
 </body>
 </html>

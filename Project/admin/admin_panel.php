@@ -16,7 +16,7 @@ function printUser()
         $password = $row['password'];
         $rating = $row['rating'];
         $dob = $row['DOB'];
-        echo "<tr><td><button>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$rating</td><td>$dob</td><td><a href=editUsers.php?id=$counter><button>Edit</button></a></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr>";
+        echo "<tr><td><button id=$counter onclick='UserExtraDetails(this.id)'>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$rating</td><td>$dob</td><td><a href=editUsers.php?id=$counter><button>Edit</button></a></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr><tr><table id=User_row_$counter><tr></tr></table></tr>";
     }
 }
 
@@ -204,6 +204,11 @@ function printCategories()
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
             "</tr>";
         document.getElementById("MainTableBody").innerHTML += "<?php printCategories(); ?>";
+    }
+
+    function UserExtraDetails(x) {
+        var rowNo = "User_row_"+x;
+        rowNo.innerHTML = "<td>12</td>";
     }
 </script>
 </html>
