@@ -1,7 +1,13 @@
 <?php
 require_once "Server/db_connection.php";
 session_start();
-
+if(!isset($_SESSION['user_email'])){
+    header('location: login.php?not_admin=You are not Admin!');
+}
+if(!isset($_SESSION['sign_out'])){
+    session_destroy();
+    header('location: Homepage.php?not_admin=You are not Admin!');
+}
 function debug_to_console( $data ) {
     $output = $data;
     if ( is_array( $output ) )
@@ -12,7 +18,6 @@ $description_user=" ";
 $hourly_rate_user=" ";
 global $connection;
 $output = $_SESSION['user_email'];
-echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 $query = "SELECT * FROM user WHERE email='$output'";
 $QueryResult = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($QueryResult);
@@ -22,7 +27,7 @@ $l_name = $row['last_name'];
 $date_birth = $row['DOB'];
 $title_user = $row['Title'];
 $location_user = $row['Location'];
-//$description_user = $row['Description'];
+$description_user = $row['Description'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
 // echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";
@@ -177,6 +182,7 @@ top_header(); ?>
                 </p>
             </div>
             <br>
+            <button id = "sign_out" name = "sign_out" class="btn btn-info">Sign Out</button>
             <!-- End Right Column -->
         </div>
         <!-- End Grid -->
