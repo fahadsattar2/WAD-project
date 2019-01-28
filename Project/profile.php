@@ -30,8 +30,19 @@ $location_user = $row['Location'];
 $description_user = $row['Description'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
-// echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";
-// echo "<script>console.log( 'Last Name: " . $lname . "' );</script>";
+
+if(isset($_POST['save_file'])){
+    $filename=$_FILES['my_file']['name'];
+    echo "<script>console.log( 'Printing: " . $filename . "' );</script>";
+}
+
+
+/*$insert_product = "insert into products (pro_cat, pro_brand,pro_title,pro_price,pro_desc,pro_image,pro_keywords)
+                  VALUES ('$pro_cat','$pro_brand','$pro_title','$pro_price','$pro_desc','$pro_image','$pro_keywords');";
+$insert_pro = mysqli_query($con, $insert_product);
+if($insert_pro){
+    header("location: ".$_SERVER['PHP_SELF']);
+}*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,7 +96,11 @@ top_header(); ?>
                     </p>
                     <div class="upload-btn-wrapper">
                         <button class="btn">Upload a file</button>
-                        <input type="file" name="my_file" />
+                        <input type="file" id = "my_file" name="my_file" />
+                    </div>
+                    <div>
+                        <input type="submit" id = "save_file" name="save_file" />
+                        <!--<button class="btn" name="save_file" id = "save_file">Save Picture</button>-->
                     </div>
                     <!-- <button type="button" class="btn btn-light" id="btnDP">Change Profile Pic</button>
                     --><!--<form method="post">
@@ -134,7 +149,6 @@ top_header(); ?>
                             <span><b>&nbsp;online</b></span>
                         </h1>
                         <p><?php echo $description_user ?></p>
-                        <!-- Yahan php function aye ga DB say Fetch About Yourself ka-->
                         <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
                     </div>
                 </div>
