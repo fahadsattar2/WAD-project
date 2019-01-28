@@ -4,9 +4,9 @@ session_start();
 if(!isset($_SESSION['user_email'])){
     header('location: login.php?not_admin=You are not Admin!');
 }
-if(!isset($_SESSION['sign_out'])){
+if(isset($_POST['sign_out'])){
     session_destroy();
-    header('location: Homepage.php?not_admin=You are not Admin!');
+    header('location:Homepage.php?logged_out=You have logged out');
 }
 function debug_to_console( $data ) {
     $output = $data;
@@ -182,7 +182,10 @@ top_header(); ?>
                 </p>
             </div>
             <br>
-            <button id = "sign_out" name = "sign_out" class="btn btn-info">Sign Out</button>
+            <li>
+                <a href="logout.php">
+                    <i class="fa fa-sign-out-alt"></i>Logout</a>
+            </li>
             <!-- End Right Column -->
         </div>
         <!-- End Grid -->
