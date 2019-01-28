@@ -8,7 +8,8 @@ function debug_to_console( $data ) {
         $output = implode( ',', $output);
     echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 }
-
+$description_user=" ";
+$hourly_rate_user=" ";
 global $connection;
 $output = $_SESSION['user_email'];
 echo "<script>console.log( 'Printing: " . $output . "' );</script>";
@@ -21,7 +22,7 @@ $l_name = $row['last_name'];
 $date_birth = $row['DOB'];
 $title_user = $row['Title'];
 $location_user = $row['Location'];
-$description_user = $row['Description'];
+//$description_user = $row['Description'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
 // echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";

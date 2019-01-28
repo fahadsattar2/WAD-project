@@ -10,7 +10,9 @@
     overflow: hidden;
     display: inline-block;
 }
-
+.headerrr{
+    margin-top: 50px;
+}
 .btn {
     border: 2px solid gray;
     color: gray;
