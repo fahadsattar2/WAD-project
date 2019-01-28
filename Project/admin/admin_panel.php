@@ -72,7 +72,6 @@ function printCategories()
 
     <style>
         body {
-            font-family: "Lato", sans-serif;
             transition: background-color .5s;
         }
 
@@ -124,23 +123,27 @@ function printCategories()
 <body>
 
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="closebtn" onclick="closeNav()">&times;</a>
     <a onclick="UserTable()">Users</a>
     <a onclick="ProjectsTable()">Projects</a>
     <a onclick="CategoriesTable()">Categories</a>
     <a href="#">Payments</a>
 </div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<div id="EditingHead">
+
+</div>
+
 <table id="MainTableBody" class="table table-bordered"></table>
 
 <div id="content">
     <div class="container">
-        <h2 class="text-center text-primary"></h2>
-        <?php
-        if(isset($_GET['editUsers'])){
-            include ('editUsers.php');
-        }
-        ?>
+     <h2 class="text-center text-primary"><?php echo @$_GET['logged_in']?></h2>
+            <?php
+            if(isset($_GET['editUsers'])){
+                include ('editUsers.php');
+            }
+            ?>
     </div>
 </div>
 </body>
@@ -160,7 +163,7 @@ function printCategories()
         closeNav();
         var body = document.getElementById("MainTableBody");
         body.innerHTML = "<tr>"+
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>"+
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><a href=\"newUser.php?\">New</a></th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Counter</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Firstname</th>"+
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Lastname</th>"+
