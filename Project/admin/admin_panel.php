@@ -36,7 +36,7 @@ function printProjects()
         $desc = $row['Description'];
         $status = $row['status'];
 
-        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td>$clt_id</td><td>$budget</td><td>$time</td><td>$desc</td><td>$status</td><td><button>Edit</button></td><td><button>Delete</button></td></tr>";
+        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td>$clt_id</td><td>$budget</td><td>$time</td><td>$desc</td><td>$status</td><td><a href=editProjects.php?id=$ID><button>Edit</button></a></td><td><a href=deleteProjects.php?id=$ID><button>Delete</button></a></td></tr>";
 
     }
 }
@@ -52,7 +52,7 @@ function printCategories()
         $ID = $row['category_id'];
         $Name = $row['category_name'];
 
-        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td><button>Edit</button></td><td><button>Delete</button></td></tr>";
+        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td><a href=editCategory.php?id=$ID><button>Edit</button></a></td><td><a href=deleteCategory.php?id=$ID><button>Delete</button></a></td></tr>";
     }
 }
 
@@ -180,7 +180,7 @@ function printCategories()
         closeNav();
         var body = document.getElementById("MainTableBody");
         body.innerHTML = "<tr>" +
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><a href=\"newProject.php?\">New</a></th>" +
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project ID</th>" +
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Project Name</th>" +
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Client ID</th>" +
@@ -197,7 +197,7 @@ function printCategories()
         closeNav();
         var body = document.getElementById("MainTableBody");
         body.innerHTML = "<tr>" +
-            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><button>New</button></th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><a href=\"newCategory.php?\">New</a></th>" +
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Category ID</th>" +
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Cetegory Name</th>" +
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>" +
