@@ -25,6 +25,7 @@ function top_header()
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
 
     <style>
@@ -159,10 +160,9 @@ top_header(); ?>
 
 </div>
 <div class="container-fluid col-xl-10 col-lg-10 col-md-10 col-sm-10  col-10 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 offset-1">
-
     <div class="row txtBg2">
         <div class="col-xs-5 offset-lg-2 col-md-5 offset-md-2 col-sm-5 offset-sm-2">
-            <img src="images/faisal.jpg" alt = "Faisal's Picture">
+            <img src="Images/faisal.JPG" alt = "Faisal's Picture">
         </div>
         <p>
             Faisal Jawad
@@ -178,13 +178,13 @@ top_header(); ?>
             Team Member
         </p>
         <div>
-            <img src="images/sana.jpeg" alt = "Sana's Picture">
+            <img src="Images/sana.jpeg" alt = "Sana's Picture">
         </div>
     </div>
 
     <div class="row txtBg2">
         <div class="col-xs-5 offset-lg-2 col-md-5 offset-md-2 col-sm-5 offset-sm-2">
-            <img src="images/mustaqeem.jpeg" alt = "Mustaqeem's Picture">
+            <img src="Images/mustaqeem.jpeg" alt = "Mustaqeem's Picture">
         </div>
         <p>
             Muhammad Mustaqeem
@@ -200,13 +200,13 @@ top_header(); ?>
             Team Member
         </p>
         <div>
-            <img src="images/JD.JPG" alt = "Junaid's Picture">
+            <img src="Images/JD.JPG" alt = "Junaid's Picture">
         </div>
     </div>
 
     <div class="row txtBg2">
         <div class="col-xs-5 offset-lg-2 col-md-5 offset-md-2 col-sm-5 offset-sm-2">
-            <img src="images/rehan.JPG" alt = "Rehan's Picture">
+            <img src="Images/rehan.JPG" alt = "Rehan's Picture">
         </div>
         <p>
             Rehan Abid
@@ -214,15 +214,9 @@ top_header(); ?>
             Team Member
         </p>
     </div>
-
-
 </div>
+<?php
+web_footer();
+?>
 </body>
-<footer id="footer">
-
-    <?php
-    web_footer();
-    ?>
-
-</footer>
 </html>

@@ -1,0 +1,33 @@
+#web-Footer
+{
+    width: 100%;
+    background-color: #354763;
+    height: auto;
+    color: white;
+}
+#txtEmail
+{
+    margin-bottom: 2%;
+    height: 40px;
+    width: 100%;
+}
+#txtSubject
+{
+    margin-bottom: 2%;
+    height: 40px;
+    width: 100%;
+}
+#txtMessage
+{
+    margin-bottom: 2%;
+    width: 100%;
+    height: 300px;
+}
+#location-Images{
+    border-style: groove;
+    border-width: 1px;
+    padding: 0.2%;
+    border-color: darkgray;
+    border-radius: 10px;
+    margin-bottom: 2%;
+}
