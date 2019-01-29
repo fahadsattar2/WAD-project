@@ -14,7 +14,7 @@ if(isset($_POST['btn_add_project']))
                               client_id = '$updated_PClientID',
                               Budget = '$updated_PBudget',
                               Time = '$updated_PTime',
-                              Description = '$updated_PDesc'
+                              Description = '$updated_PDesc',
                               status = '$updated_PStatus'";
 
     $run = mysqli_query($connection, $query);

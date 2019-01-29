@@ -19,6 +19,7 @@ if(isset($_GET['id']))
 
 if(isset($_POST['btn_update_project']))
 {
+    $Pid = $_GET['id'];
     $updated_Pname = $_POST['ProjectName'];
     $updated_PClientID = $_POST['ProjectClientId'];
     $updated_PBudget = $_POST['ProjectBudget'];
@@ -26,13 +27,13 @@ if(isset($_POST['btn_update_project']))
     $updated_PDesc = $_POST['ProjectDescription'];
     $updated_PStatus = $_POST['ProjectStatus'];
 
-    $query = "update user set Project_name = '$updated_Pname',
+    $query = "update projects set Project_name = '$updated_Pname',
                               client_id = '$updated_PClientID',
                               Budget = '$updated_PBudget',
                               Time = '$updated_PTime',
-                              Description = '$updated_PDesc'
+                              Description = '$updated_PDesc',
                               status = '$updated_PStatus'
-                              where id='$Pid'";
+                              where Project_id='$Pid'";
 
     $run = mysqli_query($connection, $query);
     if($run)
