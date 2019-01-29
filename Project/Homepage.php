@@ -1,11 +1,13 @@
 <?php
 session_start();
+
 function debug_to_console( $data ) {
     $output = $data;
     if ( is_array( $output ) )
         $output = implode( ',', $output);
     echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 }
+
 require_once "Server/db_connection.php";
 $errors=array();
 $errors2=array();
@@ -55,7 +57,7 @@ if(isset($_POST['sgn_signup_btn']))
     if(count($errors)==0)
     {
         $password=md5($pass);
-        $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB,Profile_image) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob','None');";
+        $insert_user = "insert into user (first_name,last_name,email,password,rating,DOB,my_file,Title,Location,Description,hourly_rate) VALUES ('$fname','$lname','$mail','$pass','0.0','$dob','None','Sample Title','Lahore, Pakistan','Im the best','5');";
         $insert = mysqli_query($connection, $insert_user);
     }
 }

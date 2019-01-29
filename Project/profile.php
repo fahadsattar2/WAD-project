@@ -1,7 +1,13 @@
 <?php
 require_once "Server/db_connection.php";
 session_start();
-
+if(!isset($_SESSION['user_email'])){
+    header('location: login.php?not_admin=You are not Admin!');
+}
+if(isset($_POST['sign_out'])){
+    session_destroy();
+    header('location:Homepage.php?logged_out=You have logged out');
+}
 function debug_to_console( $data ) {
     $output = $data;
     if ( is_array( $output ) )
@@ -12,7 +18,6 @@ $description_user=" ";
 $hourly_rate_user=" ";
 global $connection;
 $output = $_SESSION['user_email'];
-echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 $query = "SELECT * FROM user WHERE email='$output'";
 $QueryResult = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($QueryResult);
@@ -22,28 +27,22 @@ $l_name = $row['last_name'];
 $date_birth = $row['DOB'];
 $title_user = $row['Title'];
 $location_user = $row['Location'];
-//$description_user = $row['Description'];
+$description_user = $row['Description'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
-// echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";
-// echo "<script>console.log( 'Last Name: " . $lname . "' );</script>";
 
-function top_header()
-{
-    echo "<div class=\"header col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">
-          <a class=\"col-xl-1 col-lg-2 col-md-2 col-sm-12 col-12\" href=\"#\">Logo</a>
-          <a class=\"col-xl-1 col-lg-2 col-md-2 col-sm-12 col-12\" href=\"#home\">Home</a>
-          <a class=\"col-xl-1 col-lg-2 col-md-2 col-sm-12 col-12\" href=\"#about\">About</a>
-          <a class=\"col-xl-1 col-lg-2 col-md-2 col-sm-12 col-12\" href=\"#contact\">Contact</a>
-          <div class=\"search-container col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12\">
-                <form class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\" action=\"/action_page.php\">
-                    <input class=\"search-container col-xl-9 col-lg-12 col-md-8 col-sm-12 col-12\" type=\"text\" placeholder=\"Search..\" name=\"search\">
-                    <button class=\"col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3\" type=\"submit\"><i class=\"fa fa-search\"></i></button>
-                </form>
-          </div>
-    </div>";
+if(isset($_POST['save_file'])){
+    $filename=$_FILES['my_file']['name'];
+    echo "<script>console.log( 'Printing: " . $filename . "' );</script>";
 }
 
+
+/*$insert_product = "insert into products (pro_cat, pro_brand,pro_title,pro_price,pro_desc,pro_image,pro_keywords)
+                  VALUES ('$pro_cat','$pro_brand','$pro_title','$pro_price','$pro_desc','$pro_image','$pro_keywords');";
+$insert_pro = mysqli_query($con, $insert_product);
+if($insert_pro){
+    header("location: ".$_SERVER['PHP_SELF']);
+}*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -81,91 +80,24 @@ function top_header()
         top: 0;
         opacity: 0;
     }
-
-    /*Below Styling for header*/
-    * {box-sizing: border-box;}
-
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .header {
-        overflow: hidden;
-        top: 0;
-        background-color: #354763;
-    }
-
-    .header a {
-        float: left;
-        display: block;
-        color: black;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    }
-
-    .header a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-    .header a.active {
-        background-color: #2196F3;
-        color: white;
-    }
-
-    .header .search-container {
-        float: right;
-    }
-
-    .header input[type=text] {
-        padding: 6px;
-        margin-top: 8px;
-        font-size: 17px;
-        border: none;
-    }
-
-    .header .search-container button {
-        float: right;
-        padding: 6px 10px;
-        margin-top: 8px;
-        margin-right: 16px;
-        background: #ddd;
-        font-size: 17px;
-        border: none;
-        cursor: pointer;
-    }
-
-    .header .search-container button:hover {
-        background: #ccc;
-    }
-
-    @media screen and (max-width: 600px) {
-        .header .search-container {
-            float: none;
-        }
-        .header a, .header input[type=text], .header .search-container button {
-            float: none;
-            display: block;
-            text-align: left;
-            width: 100%;
-            margin: 0;
-            padding: 14px;
-        }
-        .header input[type=text] {
-            border: 1px solid #ccc;
-        }
-
-        .header_top_padding{
-            padding-top: 30px;
-        }
-    }
-
 </style>
+<script>
+    function edit_info() {
+        let x = document.getElementById("myP");
+        let button = document.getElementById("edit");
+        if (x.contentEditable === "true") {
+            button.innerText = "Edit";
+            x.contentEditable = "false";
+        } else {
+            button.innerText = "Save";
+            x.contentEditable = "true";
+            //button.innerHTML = "Disable content of p to be editable!";
+        }
+    }
+</script>
 <body>
 <?php
+include "Functions/functions.php";
 top_header(); ?>
 <!-- Page Container -->
 <div class="container-fluid my-5 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11 offset-1 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1">
@@ -178,7 +110,11 @@ top_header(); ?>
                     </p>
                     <div class="upload-btn-wrapper">
                         <button class="btn">Upload a file</button>
-                        <input type="file" name="my_file" />
+                        <input type="file" id = "my_file" name="my_file" />
+                    </div>
+                    <div>
+                        <input type="submit" id = "save_file" name="save_file" />
+                        <!--<button class="btn" name="save_file" id = "save_file">Save Picture</button>-->
                     </div>
                     <!-- <button type="button" class="btn btn-light" id="btnDP">Change Profile Pic</button>
                     --><!--<form method="post">
@@ -226,9 +162,8 @@ top_header(); ?>
                             <span><b>.</b></span>
                             <span><b>&nbsp;online</b></span>
                         </h1>
-                        <p><?php echo $description_user ?></p>
-                        <!-- Yahan php function aye ga DB say Fetch About Yourself ka-->
-                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
+                        <p id = "myP"><?php echo $description_user ?></p>
+                        <button type="button" id = "edit" onclick="edit_info()" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
                     </div>
                 </div>
                 <br>
@@ -275,6 +210,10 @@ top_header(); ?>
                 </p>
             </div>
             <br>
+            <li>
+                <a href="logout.php">
+                    <i class="fa fa-sign-out-alt"></i>Logout</a>
+            </li>
             <!-- End Right Column -->
         </div>
         <!-- End Grid -->

@@ -161,7 +161,7 @@ top_header(); ?>
             </p>
         </div>
         <div class="col-sm-8 col-lg-8 col-xl-8 col-md-8 text-left">
-            <h1>Yahan Bara sa Banner Bana dayn gay jis mein pics ka slide show ho</h1>
+            <h1>A banner will be displayed her with a slide show</h1>
             <hr>
             <h3>Test</h3>
             <div id="mainBody">
