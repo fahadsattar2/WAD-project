@@ -119,8 +119,4 @@ top_header(); ?>
 web_footer();
 ?>
 </body>
-
-
-
-
 </html>
