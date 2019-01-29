@@ -2,7 +2,11 @@
 require_once "Server/db_connection.php";
 session_start();
 if(!isset($_SESSION['user_email'])){
-    header('location: Homepage.php?Login_Status=You are not Logged In!');
+    header('location: login.php?not_admin=You are not Admin!');
+}
+if(isset($_POST['sign_out'])){
+    session_destroy();
+    header('location:Homepage.php?logged_out=You have logged out');
 }
 function debug_to_console( $data ) {
     $output = $data;
@@ -10,21 +14,35 @@ function debug_to_console( $data ) {
         $output = implode( ',', $output);
     echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 }
-
+$description_user=" ";
+$hourly_rate_user=" ";
 global $connection;
 $output = $_SESSION['user_email'];
-echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 $query = "SELECT * FROM user WHERE email='$output'";
 $QueryResult = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($QueryResult);
+$user_id = $row['id'];
 $f_name = $row['first_name'];
 $l_name = $row['last_name'];
 $date_birth = $row['DOB'];
 $title_user = $row['Title'];
 $location_user = $row['Location'];
-// echo "<script>console.log( 'First Name: " . $f_name . "' );</script>";
-// echo "<script>console.log( 'Last Name: " . $lname . "' );</script>";
+$description_user = $row['Description'];
+$hourly_rate_user = $row['hourly_rate'];
+$rating_user = $row['rating'];
 
+if(isset($_POST['save_file'])){
+    $filename=$_FILES['my_file']['name'];
+    echo "<script>console.log( 'Printing: " . $filename . "' );</script>";
+}
+
+
+/*$insert_product = "insert into products (pro_cat, pro_brand,pro_title,pro_price,pro_desc,pro_image,pro_keywords)
+                  VALUES ('$pro_cat','$pro_brand','$pro_title','$pro_price','$pro_desc','$pro_image','$pro_keywords');";
+$insert_pro = mysqli_query($con, $insert_product);
+if($insert_pro){
+    header("location: ".$_SERVER['PHP_SELF']);
+}*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,14 +57,28 @@ $location_user = $row['Location'];
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
-    footer {
-        position: fixed;
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    .btn {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
         left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #354763;
-        color: white;
-        text-align: center;
+        top: 0;
+        opacity: 0;
     }
 </style>
 <body>
@@ -62,8 +94,16 @@ top_header(); ?>
                     <p>
                         <img src="Images/Dummy-Profile.png" class="circle" style="height:106px;width:106px" alt="Avatar">
                     </p>
-                    <button type="button" class="btn btn-light" id="btnDP">Change Profile Pic</button>
-                    <!--<form method="post">
+                    <div class="upload-btn-wrapper">
+                        <button class="btn">Upload a file</button>
+                        <input type="file" id = "my_file" name="my_file" />
+                    </div>
+                    <div>
+                        <input type="submit" id = "save_file" name="save_file" />
+                        <!--<button class="btn" name="save_file" id = "save_file">Save Picture</button>-->
+                    </div>
+                    <!-- <button type="button" class="btn btn-light" id="btnDP">Change Profile Pic</button>
+                    --><!--<form method="post">
                        <input type="file" class="btn btn-primary" name = "btn_img"><i class="fa fa-pencil"></i>Edit Profile Picture</input>
                        </form>-->
                     <hr>
@@ -73,20 +113,17 @@ top_header(); ?>
                 </div>
             </div>
             <br>
+
             <!-- Skills -->
             <div class="card">
                 <div class="container">
                     <p>Skills</p>
                     <ul>
-                    <?php
-                        $query = "SELECT skill_name FROM user,skills,user_skills WHERE email= '$output' and user.id = user_skills.user_id and user_skills.skill_id = skills.skill_id";
-                        $QueryResult = mysqli_query($connection, $query);
-                        while($row = mysqli_fetch_assoc($QueryResult))
-                        {
-                            $skillName = $row['skill_name'];
-                            echo "<li class=\"tag small\">$skillName</li>";
-                        }
-                        ?>
+                        <li class="tag small">C++</li>
+                        <li class="tag small">C#</li>
+                        <li class="tag small">Word Processing</li>
+                        <li class="tag small">Games</li>
+                        <li class="tag small">Programming</li>
                     </ul>
                 </div>
             </div>
@@ -107,18 +144,11 @@ top_header(); ?>
                 <div class="card">
                     <div class="container" style="margin: 1%;margin-bottom: 2%;">
                         <h2><b><?php echo $f_name." ".$l_name ?></b></h2>
-                        <!-- Yahan php function aye ga DB say Fetch Name  -->
                         <h1 style="color: green">
                             <span><b>.</b></span>
                             <span><b>&nbsp;online</b></span>
                         </h1>
-                        <p>Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <!-- Yahan php function aye ga DB say Fetch About Yourself ka-->
+                        <p><?php echo $description_user ?></p>
                         <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
                     </div>
                 </div>
@@ -130,7 +160,6 @@ top_header(); ?>
                         </p>
                         <hr>
                         No Reviews
-                        <!--Yahan Reviews ain gay DB say  -->
                     </div>
                 </div>
                 <br>
@@ -143,9 +172,9 @@ top_header(); ?>
                 <div class="container">
                     <p><button class="btn btn-info">Edit Profile</button></p>
                     <p>
-                    <h2><strong>$5</strong>USD/hr</h2>
+                    <h3><strong><?php echo $hourly_rate_user?></strong>USD/hr</h3>
                     </p>
-                    <p>Ratings</p>
+                    <p><b><u>Ratings</u>:  </b><strong><?php echo $rating_user?>/5.0</strong></p>
                     <p>Amount Earned</p>
                 </div>
             </div>
@@ -167,6 +196,10 @@ top_header(); ?>
                 </p>
             </div>
             <br>
+            <li>
+                <a href="logout.php">
+                    <i class="fa fa-sign-out-alt"></i>Logout</a>
+            </li>
             <!-- End Right Column -->
         </div>
         <!-- End Grid -->
@@ -174,7 +207,7 @@ top_header(); ?>
     <!-- End Page Container -->
 </div>
 
-<footer id="webfooter">
+<footer id="footer">
 
     <?php
     web_footer();

@@ -49,7 +49,7 @@ require_once "Server/db_connection.php";
 <?php
 include "Functions/functions.php";
 top_header(); ?>
-<div class="container-fluid text-center">
+<div class="headerrr container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
             <h3>Categories</h3>
