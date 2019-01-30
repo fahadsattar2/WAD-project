@@ -9,7 +9,6 @@ function debug_to_console( $data ) {
         $output = implode( ',', $output);
     echo "<script>console.log( 'Printing: " . $output . "' );</script>";
 }
-
     if(!isset($_SESSION['user_email'])){
         header('location: homepage.php?You are Not LogIn!');
     }
@@ -21,8 +20,29 @@ function debug_to_console( $data ) {
 
     if(isset($_POST['btnPlaceBid']))
     {
-        debug_to_console("Place bid Button pressed!");
+        $query = "select client_id from projects where project_id = '$projectID'";
+        $run = mysqli_query($connection,$query);
+        $row= mysqli_fetch_assoc($run);
+        $clientID = $row['client_id'];
+
         $email = $_SESSION['user_email'];
+        $amount = $_POST['bid_amount'];
+        $time = $_POST['bid_time'];
+        $description = $_POST['bid_description'];
+
+        $query = "Insert into bids set rate = '$amount',
+                                        description = '$description',
+                                        client_id = '$clientID',
+                                        project_id = '$projectID',
+                                        milestone = '$time',
+                                        freelancer_id = (select freelancer_id from freelancer,user where freelancer.user_id = user.id and user.email = '$email')";
+
+        $run = mysqli_query($connection,$query);
+        if($run)
+        {
+            header('location:ViewProject.php?projectID='.$projectID);
+        }
+
     }
 ?>
 
@@ -112,7 +132,7 @@ web_header();
             <div class="col-xl-9 col-lg-9 col-md-7 col-sm-7 col-8">
                 <div class="my-3">
                     <h3>Project ID</h3>
-                    <span>
+                    <span id="pjtID">
                     <?php echo $projectID ?>
                     </span>
                 </div>
@@ -133,7 +153,7 @@ web_header();
                 </div>
                 <div class="my-3">
                     <h3>Client Info</h3>
-                    <span>
+                    <span id="clnID">
                         <?php
                         $query = "SELECT client_username FROM client,projects WHERE client.client_id = projects.client_id and project_id = $projectID";
                         $result = mysqli_query($connection,$query);
@@ -141,8 +161,10 @@ web_header();
                         $row = mysqli_fetch_assoc($result);
                         if($count == 0 )
                             echo "0";
-                        else
-                            echo $row['client_username'];
+                        else {
+                            $clientUserName = $row['client_username'];
+                            echo $clientUserName;
+                        }
                         ?>
                     </span>
                 </div>
@@ -209,8 +231,6 @@ web_header();
                             <input class="input-field" type="number" placeholder="Enter Your Bid Amount" name="bid_amount"/>
                         </div>
 
-
-                        
                         <div class="input-container">
                             <i class="fa fa-envelope icon"></i>
                             <input class="input-field" type="text" placeholder="Deliver in" name="bid_time"/>
@@ -218,7 +238,7 @@ web_header();
 
                         <div class="input-container">
                             <i class="fa fa-envelope icon"></i>
-                            <textarea class="input-field" placeholder="Project Description"></textarea>
+                            <textarea class="input-field" placeholder="Project Description" name="bid_description"></textarea>
                         </div>
                         <button type="submit" class="modalButtons btn btn-primary" name="btnPlaceBid">Bid</button>
                     </form>
