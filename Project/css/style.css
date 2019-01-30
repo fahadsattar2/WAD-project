@@ -62,6 +62,6 @@
     margin-top: -50px;
 }
 .sidenav{
-    height: 100%;
-    background-color: #2196F3;
+    min-height: 100vh;
+    height: auto;
 }

@@ -39,7 +39,7 @@
     function web_footer()
     {
         echo "<div class=\"container-fluid\" id=\"web-Footer\">
-    <div class=\"row my-5\">
+    <div class=\"row\">
         <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-10 col-10\">
             <img src=\"Images/Rackup-Logo(350X163).png\"/>
             <p style=\"text-align: left;font-size: large\">Pakistan's first Freelancing Website</p>
