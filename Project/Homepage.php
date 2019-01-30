@@ -146,6 +146,9 @@ if(isset($_POST['close2']))
         .modalButtons:hover {
             opacity: 1;
         }
+        input:invalid{
+            background-color: red;
+        }
     </style>
 </head>
 <body>

@@ -80,6 +80,9 @@ function debug_to_console( $data ) {
             min-width: 50px;
             text-align: center;
         }
+        input:invalid{
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -253,17 +256,17 @@ web_header();
                 <form role="form" method="post">
                     <div class="modal-body">
                         <div class="input-container">
-                            <i class="fa fa-envelope icon"></i>
-                            <input class="input-field" type="number" placeholder="Enter Your Bid Amount" name="bid_amount"/>
+                            <i class="icon fas fa-dollar-sign"></i>
+                            <input pattern="[0-9]+" class="input-field" type="number" placeholder="Enter Your Bid Amount" name="bid_amount"/>
                         </div>
 
                         <div class="input-container">
-                            <i class="fa fa-envelope icon"></i>
-                            <input class="input-field" type="text" placeholder="Deliver in" name="bid_time"/>
+                            <i class="icon far fa-clock"></i>
+                            <input pattern="[0-9]+"  class="input-field" type="text" placeholder="Deliver in" name="bid_time"/>
                         </div>
 
                         <div class="input-container">
-                            <i class="fa fa-envelope icon"></i>
+                            <i class="icon far fa-sticky-note"></i>
                             <textarea class="input-field" placeholder="Project Description" name="bid_description"></textarea>
                         </div>
                         <button type="submit" class="modalButtons btn btn-primary" name="btnPlaceBid">Bid</button>
