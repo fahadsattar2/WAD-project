@@ -78,11 +78,11 @@ include "Functions/functions.php";
             </div>
 
             <div class="col-sm-11 col-lg-8 col-xl-8 col-md-12 col-12" style="background-color: white">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="mainCarousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#mainCarousel" data-slide-to="1"></li>
+                        <li data-target="#mainCarousel" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
