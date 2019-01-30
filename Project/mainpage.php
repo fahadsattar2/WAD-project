@@ -30,6 +30,9 @@ function top_header()
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
     <style>
         body{
             color: black;
@@ -45,110 +48,52 @@ function top_header()
         a{
             color: white;
         }
-        #footer {
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color: #354763;
-            color: white;
-            position: absolute;
-            right: 0;
-            padding: 1rem;
-            text-align: center;
-        }
-        .dropdown-content a:hover {background-color: #ddd;}
-        .dropdown:hover .dropdown-content {display: block;}
-        .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-        /*Below Styling for header*/
-        * {box-sizing: border-box;}
-
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
-
-        .header {
-            overflow: hidden;
-            top: 0;
-            background-color: #354763;
-        }
-
-        .header a {
-            float: left;
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .header a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .header a.active {
-            background-color: #2196F3;
-            color: white;
-        }
-
-        .header .search-container {
-            float: right;
-        }
-
-        .header input[type=text] {
-            padding: 6px;
-            margin-top: 8px;
-            font-size: 17px;
-            border: none;
-        }
-
-        .header .search-container button {
-            float: right;
-            padding: 6px 10px;
-            margin-top: 8px;
-            margin-right: 16px;
-            background: #ddd;
-            font-size: 17px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .header .search-container button:hover {
-            background: #ccc;
-        }
-
-        @media screen and (max-width: 600px) {
-            .header .search-container {
-                float: none;
-            }
-            .header a, .header input[type=text], .header .search-container button {
-                float: none;
-                display: block;
-                text-align: left;
-                width: 100%;
-                margin: 0;
-                padding: 14px;
-            }
-            .header input[type=text] {
-                border: 1px solid #ccc;
-            }
-
-            .header_top_padding{
-                padding-top: 30px;
-            }
-        }
-
     </style>
 </head>
 <body>
-<?php
-top_header(); ?>
-<div class="headerrr container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <a class="navbar-brand" href="#"><img src="Images\Rackup-Logo(100X35).png" alt="RackUp international"/></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Projects</a>
+            </li>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="Search-bar" name="Search-bar" onkeyup="searchResult(this.value)">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <li class="nav-item dropdown" style="float: right; right: 7%; position: absolute;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="profile.php">Profile</a>
+                    <hr>
+                    <a class="dropdown-item" href="#">Log Out</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="row">
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12 sidenav">
             <h3>Categories</h3>
             <p>
             <h6><a href="#">Link</a></h6>
@@ -160,7 +105,8 @@ top_header(); ?>
             <h6><a href="#">Link</a></h6>
             </p>
         </div>
-        <div class="col-sm-8 col-lg-8 col-xl-8 col-md-8 text-left">
+
+        <div class="col-sm-11 col-lg-8 col-xl-8 col-md-11 col-11">
             <h1>A banner will be displayed her with a slide show</h1>
             <hr>
             <h3>Test</h3>
@@ -168,7 +114,7 @@ top_header(); ?>
 
             </div>
         </div>
-        <div class="col-sm-2 sidenav">
+        <div class="sidenav col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
             <div>
                 <p id="DetailsTab">
 
@@ -177,6 +123,11 @@ top_header(); ?>
         </div>
     </div>
 </div>
+
+<?php
+include "Functions/functions.php";
+web_footer();
+?>
 </body>
 
 <script>

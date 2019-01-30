@@ -125,4 +125,7 @@
     background: #ccc;
 
 }
-
+.sidenav{
+    height: 100%;
+    background-color: #2196F3;
+}

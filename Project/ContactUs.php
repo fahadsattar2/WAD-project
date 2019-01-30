@@ -25,7 +25,6 @@ function top_header()
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
 
