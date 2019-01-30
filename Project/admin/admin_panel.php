@@ -56,6 +56,21 @@ function printCategories()
     }
 }
 
+function printSkills()
+{
+    global $connection;
+    $Query = "select * from skills";
+    $QueryResult = mysqli_query($connection, $Query);
+
+    while($row = mysqli_fetch_assoc($QueryResult))
+    {
+        $ID = $row['skill_id'];
+        $Name = $row['skill_name'];
+
+        echo "<tr><td><button>Expand</button></td><td>$ID</td><td>$Name</td><td><a href=editSkills.php?id=$ID><button>Edit</button></a></td><td><a href=deleteSkills.php?id=$ID><button>Delete</button></a></td></tr>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -127,7 +142,7 @@ function printCategories()
     <a onclick="UserTable()">Users</a>
     <a onclick="ProjectsTable()">Projects</a>
     <a onclick="CategoriesTable()">Categories</a>
-    <a href="#">Payments</a>
+    <a onclick="SkillsTable()">Skills</a>
 </div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 <div id="EditingHead">
@@ -204,6 +219,19 @@ function printCategories()
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
             "</tr>";
         document.getElementById("MainTableBody").innerHTML += "<?php printCategories(); ?>";
+    }
+
+    function SkillsTable() {
+        closeNav();
+        var body = document.getElementById("MainTableBody");
+        body.innerHTML = "<tr>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\"><a href=\"newSkill.php?\">New</a></th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Skill ID</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Skill Name</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Edit</th>" +
+            "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
+            "</tr>";
+        document.getElementById("MainTableBody").innerHTML += "<?php printSkills(); ?>";
     }
 
     function UserExtraDetails(x) {

@@ -46,7 +46,7 @@ if(isset($_POST['btn_update_category']))
                 <h2 class="offset-lg-3 offset-md-2 offset-1 "> Edit & Update Category </h2>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-sm-4 col-lg-3 d-none d-sm-block" for="User_first_name">Name</label>
+                <label class="col-form-label col-sm-4 col-lg-3 d-none d-sm-block" for="Category_name">Name</label>
                 <div class="col-12 col-sm-8 col-lg-9">
                     <input class="form-control" type="text" id="CategoryName" name="CategoryName" placeholder="Category Name"
                            value="<?php echo $Cname;?>">
