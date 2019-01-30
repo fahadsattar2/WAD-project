@@ -1,4 +1,9 @@
 <?php
+session_start();
+require_once "db_connection.php";
+if(!isset($_SESSION['user_email'])){
+    header('location: adminLogin.php?not_admin=You are not Admin!');
+}
 
 require_once "db_connection.php";
 
