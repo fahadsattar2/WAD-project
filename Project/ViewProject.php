@@ -13,12 +13,21 @@ require_once "Server/db_connection.php";
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <style>
+        .icon {
+            padding: 3%;
+            background: dodgerblue;
+            color: white;
+            min-width: 50px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container-fluid col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11" style="background-color: darkgrey;">
+    <div class="container-fluid col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11">
 
-        <div class="card container-fluid my-5 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11" style="background-color: white;">
+        <div class="card container-fluid my-5 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11">
             <div class="row">
             <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-3">
                 <h3>Bids</h3><br>
