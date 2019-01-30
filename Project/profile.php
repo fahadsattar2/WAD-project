@@ -27,7 +27,7 @@ $l_name = $row['last_name'];
 $date_birth = $row['DOB'];
 $title_user = $row['Title'];
 $location_user = $row['Location'];
-//$description_user = $row['Description'];
+$description_user = $row['Description'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
 $profile_picture = $row['my_file'];
@@ -79,7 +79,7 @@ $profile_picture = $row['my_file'];
             button.id = "save_desc";
             button.className = "fa fa-pencil btn btn-primary";
             x.contentEditable = "false";
-            //edit_description();
+            edit_description(document.getElementById("myP").innerText);
         }
         else {
             button.innerText = "Save";
@@ -87,8 +87,21 @@ $profile_picture = $row['my_file'];
             button.className = "fa fa-pencil btn btn-primary";
             x.contentEditable = "true";
         }
-    }/*
-    function edit_description()
+    }
+
+    function edit_title() {
+        var x = document.getElementById("myT");
+        var button = document.getElementById("myT");
+        button.innerText = "Enter new Title Here!";
+        button.id = "edit_title";
+        x.contentEditable = "true";
+        if (event.key === "Enter")
+        {
+            console.log("Enter pressed!");
+            x.contentEditable = "false";
+        }
+    }
+    function edit_description($string)
     {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function()
@@ -98,9 +111,9 @@ $profile_picture = $row['my_file'];
                 document.getElementById("myP").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET", "edit_description.php?e=" + x, true);
+        xmlhttp.open("GET", "edit_description.php?e=" + $string, true);
         xmlhttp.send();
-    }*/
+    }
 </script>
 <body>
 <?php
@@ -144,7 +157,7 @@ web_header(); ?>
                         ?>
                     </div>
                     <hr>
-                    <p><i class="fa fa-pencil fa-fw"></i><b><?php echo $title_user?></b></p>
+                    <p onclick="edit_title()" id = "myT"><i class="fa fa-pencil fa-fw"></i><b><?php echo $title_user?></b></p>
                     <p><i class="fa fa-home fa-fw"></i> <?php echo $location_user ?></p>
                     <p><i class="fa fa-birthday-cake"></i> <?php echo $date_birth?></p>
                 </div>
