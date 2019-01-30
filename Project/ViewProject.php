@@ -12,6 +12,10 @@ function debug_to_console( $data ) {
     if(!isset($_SESSION['user_email'])){
         header('location: homepage.php?You are Not LogIn!');
     }
+    if(!isset($_GET['projectID']))
+    {
+        header('location:mainpage.php?');
+    }
 
     if(isset($_GET['projectID']))
     {
@@ -49,7 +53,18 @@ function debug_to_console( $data ) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Project Page</title>
+    <title>
+        <?php
+        $query = "select project_name from projects where project_id = $projectID";
+        $result = mysqli_query($connection,$query);
+        $count = mysqli_num_rows($result);
+        $row = mysqli_fetch_assoc($result);
+        if($count == 0 )
+            echo "0";
+        else
+            echo $row['project_name'];
+        ?>
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -131,10 +146,21 @@ web_header();
             <div class="row">
             <div class="col-xl-9 col-lg-9 col-md-7 col-sm-7 col-8">
                 <div class="my-3">
-                    <h3>Project ID</h3>
-                    <span id="pjtID">
-                    <?php echo $projectID ?>
+                    <h6>Project ID : <span id="pjtID"> <?php echo $projectID ?> </span></h6>
+                    <h3>
+                    <span id="pjtName">
+                        <?php
+                        $query = "select project_name from projects where project_id = $projectID";
+                        $result = mysqli_query($connection,$query);
+                        $count = mysqli_num_rows($result);
+                        $row = mysqli_fetch_assoc($result);
+                        if($count == 0 )
+                            echo "0";
+                        else
+                            echo $row['project_name'];
+                        ?>
                     </span>
+                    </h3>
                 </div>
                 <div class="my-3">
                     <h3>Project Description</h3>
