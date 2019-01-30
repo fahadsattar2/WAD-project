@@ -114,6 +114,7 @@ if(isset($_POST['close2']))
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Welcome to Rack-Up</title>
@@ -153,13 +154,19 @@ if(isset($_POST['close2']))
     <div id="DivButtons" style="top: 2%;position: fixed;right: 2%">
         <button type="button" class="btn btn-light" id="RegisterBtn">Sign Up</button>
         <button type="button" class="btn btn-light" id="LoginBtn">Login</button>
+
+
     </div>
+
+    <button type="button" href="contactus.php" style="float: right;margin-top: 10%;border: none;"><i class="fas fa-phone"></i></button>
+
     <div id="banner">
         <h1>Find The Perfect Freelance Services For Your Business</h1>
         <p id="messageBanner">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
         </p>
     </div>
+
     <div class="modal fade" id="LoginModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
