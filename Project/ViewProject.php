@@ -220,7 +220,7 @@ web_header();
                             <i class="fa fa-envelope icon"></i>
                             <textarea class="input-field" placeholder="Project Description"></textarea>
                         </div>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary" name="btnPlaceBid">Bid</button>
+                        <button type="submit" class="modalButtons btn btn-primary" name="btnPlaceBid">Bid</button>
                     </form>
                 </div>
             </div>
