@@ -11,7 +11,7 @@
     <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
         <ul class=\"navbar-nav mr-auto\">
             <li class=\"nav-item active\">
-                <a class=\"nav-link\" href=\"#\">Home</a>
+                <a class=\"nav-link\" href=\"mainpage.php\">Home</a>
             </li>
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"#\">Projects</a>
@@ -28,7 +28,7 @@
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                     <a class=\"dropdown-item\" href=\"profile.php\">Profile</a>
                     <hr>
-                    <a class=\"dropdown-item\" href=\"#\">Log Out</a>
+                    <a class=\"dropdown-item\" href=\"logout.php\">Log Out</a>
                 </div>
             </li>
         </ul>
@@ -56,6 +56,7 @@
 
         <div class=\"col-xl-3 col-lg-3 col-md-3 col-sm-10 col-10 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1 my-5\">
             <h2>Contact US</h2>
+          <a href=\"ContactUs.php\" style=\"color: white;\">CONTACT US</a>
             <h5 style=\"text-align: left;\"><a style=\"color: white;\" href=\"https://www.google.com/maps/place/University+of+Central+Punjab/@31.4469043,74.2660429,17z/data=!3m1!4b1!4m5!3m4!1s0x3919017432b1835b:0xe396992a5b05891c!8m2!3d31.4468997!4d74.2682316\">
                 <br>1 - Khayaban-e-Jinnah Road
                 <br>Johar Town, Lahore, Pakistan
