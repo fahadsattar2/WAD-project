@@ -31,20 +31,6 @@ $location_user = $row['Location'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
 $profile_picture = $row['my_file'];
-
-/*if(isset($_POST['save_file'])){
-    $filename=$_FILES['my_file']['name'];
-    echo "<script>console.log( 'Printing: " . $filename . "' );</script>";
-}*/
-
-
-/*$insert_product = "insert into products (pro_cat, pro_brand,pro_title,pro_price,pro_desc,pro_image,pro_keywords)
-                  VALUES ('$pro_cat','$pro_brand','$pro_title','$pro_price','$pro_desc','$pro_image','$pro_keywords');";
-$insert_pro = mysqli_query($con, $insert_product);
-if($insert_pro){
-    header("location: ".$_SERVER['PHP_SELF']);
-}*/
-
 ?>
 
 <!DOCTYPE html>
@@ -87,15 +73,32 @@ if($insert_pro){
 <script>
     function edit_info() {
         let x = document.getElementById("myP");
-        let button = document.getElementById("edit");
+        let button = document.getElementById("edit_desc");
         if (x.contentEditable === "true") {
             button.innerText = "Edit";
+            button.id = "save_desc";
             x.contentEditable = "false";
-        } else {
+            //edit_description();
+        }
+        else {
             button.innerText = "Save";
+            button.id = "edit_desc";
             x.contentEditable = "true";
         }
-    }
+    }/*
+    function edit_description()
+    {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                document.getElementById("myP").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "edit_description.php?e=" + x, true);
+        xmlhttp.send();
+    }*/
 </script>
 <body>
 <?php
@@ -131,7 +134,8 @@ web_header(); ?>
                             {
                                 echo"<script>alert('Profile updated successfully')  </script>";
                             }
-                            else{
+                            else
+                            {
                                 echo"<script>alert('Profile Picture Upload failed!')  </script>";
                             }
                         }
@@ -180,7 +184,7 @@ web_header(); ?>
                             <span><b>&nbsp;online</b></span>
                         </h1>
                         <p id = "myP"><?php echo $description_user ?></p>
-                        <button type="button" id = "edit" onclick="edit_info()" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
+                        <button type="button" id = "edit_desc" name="edit_desc" onclick="edit_info()" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
                     </div>
                 </div>
                 <br>
