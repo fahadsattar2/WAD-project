@@ -17,10 +17,57 @@ include "Functions/functions.php";
             while ($row2 = mysqli_fetch_assoc($SubqueryResult))
             {
                 $SubCatName = $row2['sub_cat_name'];
-                echo "<h6><a id='$SubCatName' href='#'>$SubCatName</a></h6>";
+                $subID = $row2['sub_cat_id'];
+                echo "<h6><a id='$SubCatName' href='mainpage.php?subCat=$subID'>$SubCatName</a></h6>";
             }
             echo "</h5><br>";
         }
+    }
+
+    function getProjects()
+    {
+        global $connection;
+        if (!isset($_GET['subCat'])) {
+            $Query = "select * from projects";
+        }
+        if (isset($_GET['subCat'])) {
+            $cat_id = $_GET['subCat'];
+            $Query = "select * from projects,project_category where projects.project_id = project_category.project_id and project_category.sub_cat_id = '$cat_id'";
+        }
+        $result = mysqli_query($connection, $Query);
+        $count = mysqli_num_rows($result);
+        if ($count == 0) {
+            echo "<h4 class='alert-warning align-center my-2 p-2'> No Projects found in selected criteria </h4>";
+        }
+        else {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $pid = $row['Project_id'];
+                $title = $row['Project_name'];
+                $price = $row['Budget'];
+                $desc = $row['Description'];
+                $curr = $row['status'];
+                echo "<p>
+                     <div class=\"card\" style=\"color: black\" id=\"$pid\" onclick=\"CardDetails(this.id)\">
+                         <div class=\"card-header\">
+                             <div class=\"row\">
+                             <a href='ViewProject.php?projectID=$pid'><h5>$title</h5></a>
+                             </div>
+                         </div>
+                         <div class=\"row card-body\">
+                             <p class=\"col-xl-11\">
+                                 $desc
+                             </p>
+                             <p class=\"col-xl-1\">
+                                 <button>Bid</button>
+                             </p>
+                         </div>
+                         <div class=\"card-footer\">
+                             <h6>Budget : Rs.$price</h6>                          
+                          </div>
+                     </div>
+                 </p>";
+                }
+            }
     }
 ?>
 
@@ -100,7 +147,9 @@ include "Functions/functions.php";
                 </div>
                 <hr>
                 <div id="mainBody" class="container-fluid col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
+                    <?php
+                    getProjects();
+                    ?>
                 </div>
             </div>
 

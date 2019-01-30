@@ -17,7 +17,7 @@ if($count>0)
                       <div class=\"card\" style=\"color: black\" id=\"$pid\" onclick=\"CardDetails(this.id)\">
                           <div class=\"card-header\">
                               <div class=\"row\">
-                              <h5>$title</h5>
+                              <a><h5>$title</h5></a>
                               </div>
                           </div>
                           <div class=\"row card-body\">
