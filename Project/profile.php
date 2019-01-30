@@ -30,6 +30,7 @@ $location_user = $row['Location'];
 //$description_user = $row['Description'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
+$profile_picture = $row['my_file'];
 
 /*if(isset($_POST['save_file'])){
     $filename=$_FILES['my_file']['name'];
@@ -93,14 +94,13 @@ if($insert_pro){
         } else {
             button.innerText = "Save";
             x.contentEditable = "true";
-            //button.innerHTML = "Disable content of p to be editable!";
         }
     }
 </script>
 <body>
 <?php
 include "Functions/functions.php";
-top_header(); ?>
+web_header(); ?>
 <!-- Page Container -->
 
 
@@ -109,61 +109,34 @@ top_header(); ?>
         <div class="col m3 col-xl-2 col-lg-4 col-md-5 col-sm-5 col-11">
             <div class="card" style="text-align: center;">
                 <div class="container">
-
                     <p>
-                        <img src="Images/Dummy-Profile.png" class="circle" style="height:106px;width:106px" alt="Avatar">
+                        <img src="profile_images/<?php echo $profile_picture?>" class="circle" style="height:106px;width:106px" alt="Avatar">
                     </p>
-                    <div class="upload-btn-wrapper">
+                    <div>
                         <form action="" method="POST" enctype="multipart/form-data">
-
-                            <button class="btn">Upload a file</button>
-                            <input type="file" id = "my_file" name="my_file" />
+                            <input type="file" class="upload-btn-wrapper" aria-valuetext="Upload" id = "my_file" name="my_file" />
+                            <button type="submit" class="btn" name="save_file" id = "save_file">Save Picture</button>
                         </form>
                     </div>
                     <div>
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            <input type="submit" id = "save_file" name="save_file" />
-                            <?php
-                                $imgs = "";
-                                $name = "abcd";
-                                $temp_name = "";
-                                if(isset($_FILES['my_file']) && ($_FILES['my_file']!="" )){
-                                    //print_r("Hello");
-                                    $name=$_FILES['my_file']['name'];
-                                    $temp_name=$_FILES['my_file']['temp_name'];
-                                    f($name);
-                                    //$type=$_FILES['my_file']['type'];
-                                    //$profile_img=$_FILES['my_file'];
-                                    //unlink("profile_images/$old_image");
-                                    //move_uploaded_file($temp,"profile_images/$imgs");
-                                }
-                                if(isset($_POST['save_file']))
-                                {
-                                    print_r($name);
-                                }
-                                function f($name)
-                                {
-                                    print_r($name);
-                                }
-                                //else{
-                                //$imgs=$old_image;
-                                //}
-                                /*$update=mysqli_query($connection,"update user set my_file='$imgs' where id = $user_id");
-                                if($update)
-                                {
-                                    echo"<script>alert('data updated successfully')  </script>";
-                                }
-                                else{
-                                    echo"<script>alert('data updated successfully')  </script>";
-                                }*/
-                            ?>
-                        <!--<button class="btn" name="save_file" id = "save_file">Save Picture</button>-->
-                        </form>
+
+                        <?php
+                        if(isset($_POST['save_file']))
+                        {
+                            $my_file = $_FILES['my_file']['name'];
+                            $my_file_tmp = $_FILES['my_file']['tmp_name'];
+                            move_uploaded_file($my_file_tmp,"profile_images/$my_file");
+                            $update=mysqli_query($connection,"update user set my_file='$my_file' where id = $user_id");
+                            if($update)
+                            {
+                                echo"<script>alert('Profile updated successfully')  </script>";
+                            }
+                            else{
+                                echo"<script>alert('Profile Picture Upload failed!')  </script>";
+                            }
+                        }
+                        ?>
                     </div>
-                    <!-- <button type="button" class="btn btn-light" id="btnDP">Change Profile Pic</button>
-                    --><!--<form method="post">
-                       <input type="file" class="btn btn-primary" name = "btn_img"><i class="fa fa-pencil"></i>Edit Profile Picture</input>
-                       </form>-->
                     <hr>
                     <p><i class="fa fa-pencil fa-fw"></i><b><?php echo $title_user?></b></p>
                     <p><i class="fa fa-home fa-fw"></i> <?php echo $location_user ?></p>
