@@ -209,6 +209,8 @@ web_header();
                             <input class="input-field" type="number" placeholder="Enter Your Bid Amount" name="bid_amount"/>
                         </div>
 
+
+                        
                         <div class="input-container">
                             <i class="fa fa-envelope icon"></i>
                             <input class="input-field" type="text" placeholder="Deliver in" name="bid_time"/>
