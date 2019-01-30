@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "db_connection.php";
-if(!isset($_SESSION['user_email'])){
+if(!isset($_SESSION['AdminName'])){
     header('location: adminLogin.php?not_admin=You are not Admin!');
 }
 
@@ -21,7 +21,7 @@ function printUser()
         $password = $row['password'];
         $rating = $row['rating'];
         $dob = $row['DOB'];
-        echo "<tr><td><button id=$counter onclick='UserExtraDetails(this.id)'>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$rating</td><td>$dob</td><td><a href=editUsers.php?id=$counter><button>Edit</button></a></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr><tr><table id=User_row_$counter><tr></tr></table></tr>";
+        echo "<tr><td><button>Expand</button></td><td>$counter</td><td>$fname</td><td>$lname</td><td>$email</td><td>$password</td><td>$rating</td><td>$dob</td><td><a href=editUsers.php?id=$counter><button>Edit</button></a></td><td><a href=deleteUsers.php?id=$counter><button>Delete</button></a></td></tr><tr><table id=User_row_$counter><tr></tr></table></tr>";
     }
 }
 
@@ -148,24 +148,16 @@ function printSkills()
     <a onclick="ProjectsTable()">Projects</a>
     <a onclick="CategoriesTable()">Categories</a>
     <a onclick="SkillsTable()">Skills</a>
+    <a href="adminLogout.php">Logout</a>
 </div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 <div id="EditingHead">
 
 </div>
 
-<table id="MainTableBody" class="table table-bordered"></table>
+<table id="MainTableBody" class="table table-bordered">
+</table>
 
-<div id="content">
-    <div class="container">
-     <h2 class="text-center text-primary"><?php echo @$_GET['logged_in']?></h2>
-            <?php
-            if(isset($_GET['editUsers'])){
-                include ('editUsers.php');
-            }
-            ?>
-    </div>
-</div>
 </body>
 
 <script>
@@ -237,11 +229,6 @@ function printSkills()
             "<th class=\"col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1\">Delete</th>" +
             "</tr>";
         document.getElementById("MainTableBody").innerHTML += "<?php printSkills(); ?>";
-    }
-
-    function UserExtraDetails(x) {
-        var rowNo = "User_row_"+x;
-        rowNo.innerHTML = "<td>12</td>";
     }
 </script>
 </html>
