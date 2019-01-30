@@ -77,12 +77,14 @@ $profile_picture = $row['my_file'];
         if (x.contentEditable === "true") {
             button.innerText = "Edit";
             button.id = "save_desc";
+            button.className = "fa fa-pencil btn btn-primary";
             x.contentEditable = "false";
             //edit_description();
         }
         else {
             button.innerText = "Save";
             button.id = "edit_desc";
+            button.className = "fa fa-pencil btn btn-primary";
             x.contentEditable = "true";
         }
     }/*
