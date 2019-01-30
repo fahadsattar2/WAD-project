@@ -2,7 +2,7 @@
     function web_header()
     {
         echo "<nav class=\"navbar navbar-expand-lg bg-dark navbar-dark\">
-    <a class=\"navbar-brand\" href=\"#\"><img src=\"Images\Rackup-Logo(100X35).png\" alt=\"RackUp international\"/></a>
+    <a class=\"navbar-brand\" href=\"#\">RackUP</a>
 
     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"true\" aria-label=\"Toggle navigation\">
         <span class=\"navbar-toggler-icon\"></span>
