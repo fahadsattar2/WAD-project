@@ -50,7 +50,7 @@ include "Functions/functions.php";
                      <div class=\"card\" style=\"color: black\" id=\"$pid\" onclick=\"CardDetails(this.id)\">
                          <div class=\"card-header\">
                              <div class=\"row\">
-                             <a href='ViewProject.php?projectID=$pid'><h5>$title</h5></a>
+                             <a href='ViewProject.php?projectID=$pid'><h5 style=\"color: black\">$title</h5></a>
                              </div>
                          </div>
                          <div class=\"row card-body\">

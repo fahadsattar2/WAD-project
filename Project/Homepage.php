@@ -146,6 +146,9 @@ if(isset($_POST['close2']))
         .modalButtons:hover {
             opacity: 1;
         }
+        input:invalid{
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -154,16 +157,19 @@ if(isset($_POST['close2']))
     <div id="DivButtons" style="top: 2%;position: fixed;right: 2%">
         <button type="button" class="btn btn-light" id="RegisterBtn">Sign Up</button>
         <button type="button" class="btn btn-light" id="LoginBtn">Login</button>
-
-
     </div>
 
-    <button type="button" href="contactus.php" style="float: right;margin-top: 10%;border: none;"><i class="fas fa-phone"></i></button>
+    <button type="button" href="ContactUs.php" style="float: right;margin-top: 10%;border: none;"><i class="fas fa-phone"></i></button>
 
     <div id="banner">
         <h1>Find The Perfect Freelance Services For Your Business</h1>
         <p id="messageBanner">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            Founded in 2018, Rackup is setup as a freelancing platform for citizens of Pakistan.
+            Through this market place employers and freelancers can get connected and get their tasks done.
+            Rackup helps in connecting and expanding business with great talents.From Content writing, Graphic designing, Social media marketing,
+            SEO, development, Data entry and Virtual Assistant, Mobile phone and Computing,
+            Translation and Languages and other legal services all can be done and
+            freelancer according to your requirements can be hired just in few clicks.
         </p>
     </div>
 
