@@ -27,14 +27,14 @@ $l_name = $row['last_name'];
 $date_birth = $row['DOB'];
 $title_user = $row['Title'];
 $location_user = $row['Location'];
-$description_user = $row['Description'];
+//$description_user = $row['Description'];
 $hourly_rate_user = $row['hourly_rate'];
 $rating_user = $row['rating'];
 
-if(isset($_POST['save_file'])){
+/*if(isset($_POST['save_file'])){
     $filename=$_FILES['my_file']['name'];
     echo "<script>console.log( 'Printing: " . $filename . "' );</script>";
-}
+}*/
 
 
 /*$insert_product = "insert into products (pro_cat, pro_brand,pro_title,pro_price,pro_desc,pro_image,pro_keywords)
@@ -43,7 +43,9 @@ $insert_pro = mysqli_query($con, $insert_product);
 if($insert_pro){
     header("location: ".$_SERVER['PHP_SELF']);
 }*/
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -100,21 +102,63 @@ if($insert_pro){
 include "Functions/functions.php";
 top_header(); ?>
 <!-- Page Container -->
+
+
 <div class="container-fluid my-5 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11 offset-1 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1">
     <div class="row">
         <div class="col m3 col-xl-2 col-lg-4 col-md-5 col-sm-5 col-11">
             <div class="card" style="text-align: center;">
                 <div class="container">
+
                     <p>
                         <img src="Images/Dummy-Profile.png" class="circle" style="height:106px;width:106px" alt="Avatar">
                     </p>
                     <div class="upload-btn-wrapper">
-                        <button class="btn">Upload a file</button>
-                        <input type="file" id = "my_file" name="my_file" />
+                        <form action="" method="POST" enctype="multipart/form-data">
+
+                            <button class="btn">Upload a file</button>
+                            <input type="file" id = "my_file" name="my_file" />
+                        </form>
                     </div>
                     <div>
-                        <input type="submit" id = "save_file" name="save_file" />
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <input type="submit" id = "save_file" name="save_file" />
+                            <?php
+                                $imgs = "";
+                                $name = "abcd";
+                                $temp_name = "";
+                                if(isset($_FILES['my_file']) && ($_FILES['my_file']!="" )){
+                                    //print_r("Hello");
+                                    $name=$_FILES['my_file']['name'];
+                                    $temp_name=$_FILES['my_file']['temp_name'];
+                                    f($name);
+                                    //$type=$_FILES['my_file']['type'];
+                                    //$profile_img=$_FILES['my_file'];
+                                    //unlink("profile_images/$old_image");
+                                    //move_uploaded_file($temp,"profile_images/$imgs");
+                                }
+                                if(isset($_POST['save_file']))
+                                {
+                                    print_r($name);
+                                }
+                                function f($name)
+                                {
+                                    print_r($name);
+                                }
+                                //else{
+                                //$imgs=$old_image;
+                                //}
+                                /*$update=mysqli_query($connection,"update user set my_file='$imgs' where id = $user_id");
+                                if($update)
+                                {
+                                    echo"<script>alert('data updated successfully')  </script>";
+                                }
+                                else{
+                                    echo"<script>alert('data updated successfully')  </script>";
+                                }*/
+                            ?>
                         <!--<button class="btn" name="save_file" id = "save_file">Save Picture</button>-->
+                        </form>
                     </div>
                     <!-- <button type="button" class="btn btn-light" id="btnDP">Change Profile Pic</button>
                     --><!--<form method="post">
