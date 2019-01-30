@@ -83,6 +83,20 @@ if($insert_pro){
         opacity: 0;
     }
 </style>
+<script>
+    function edit_info() {
+        let x = document.getElementById("myP");
+        let button = document.getElementById("edit");
+        if (x.contentEditable === "true") {
+            button.innerText = "Edit";
+            x.contentEditable = "false";
+        } else {
+            button.innerText = "Save";
+            x.contentEditable = "true";
+            //button.innerHTML = "Disable content of p to be editable!";
+        }
+    }
+</script>
 <body>
 <?php
 include "Functions/functions.php";
@@ -192,8 +206,8 @@ top_header(); ?>
                             <span><b>.</b></span>
                             <span><b>&nbsp;online</b></span>
                         </h1>
-                        <p><?php echo $description_user ?></p>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
+                        <p id = "myP"><?php echo $description_user ?></p>
+                        <button type="button" id = "edit" onclick="edit_info()" class="btn btn-primary"><i class="fa fa-pencil"></i>Edit</button>
                     </div>
                 </div>
                 <br>

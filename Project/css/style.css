@@ -4,15 +4,12 @@
     font-size: 30px;
 
 }
-
 .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
     display: inline-block;
 }
-.headerrr{
-    margin-top: 50px;
-}
+
 .btn {
     border: 2px solid gray;
     color: gray;
@@ -78,8 +75,6 @@
     overflow: hidden;
     background-color: #354763;
     position: fixed;
-
-
 }
 
 .topnav a {
@@ -115,7 +110,6 @@
     border: none;
 
 }
-
 .topnav .search-container button {
     float: right;
     padding: 6px;
@@ -127,18 +121,11 @@
     cursor: pointer;
 
 }
-
 .topnav .search-container button:hover {
     background: #ccc;
 
 }
-.sidenav {
-    padding-top: 2%;
-    color: white;
-    background-color: #1a6785;
+.sidenav{
     height: 100%;
-
-
-
+    background-color: #2196F3;
 }
-

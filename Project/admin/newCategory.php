@@ -4,9 +4,9 @@ require "db_connection.php";
 if(isset($_POST['btn_add_category']))
 {
     $new_Cname = $_POST['CategoryName'];
+    $query = "Insert into category (category_name) values ('$new_Cname')";
 
-    $query = "Insert into cateogory set category_name = '$new_Cname'";
-
+    echo $query;
     $run = mysqli_query($connection, $query);
     if($run)
     {

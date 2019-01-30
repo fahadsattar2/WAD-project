@@ -15,9 +15,7 @@ if(isset($_GET['id']))
 if(isset($_POST['btn_update_category']))
 {
     $updated_Cname = $_POST['CategoryName'];
-
-    $query = "update category set category_name = '$updated_Cname',
-                              where category_id='$Cid'";
+    $query = "update category set category_name = '$updated_Cname' where category_id='$Cid'";
 
     $run = mysqli_query($connection, $query);
     if($run)
