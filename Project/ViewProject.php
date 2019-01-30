@@ -1,7 +1,7 @@
 <?php
 require_once "Server/db_connection.php";
 include "Functions/functions.php";
-
+global $connection;
 session_start();
 function debug_to_console( $data ) {
     $output = $data;
@@ -21,7 +21,7 @@ function debug_to_console( $data ) {
 
     if(isset($_POST['btnPlaceBid']))
     {
-        print_r("abcdedfg");
+        debug_to_console("Place bid Button pressed!");
         $email = $_SESSION['user_email'];
     }
 ?>
@@ -220,7 +220,7 @@ web_header();
                             <i class="fa fa-envelope icon"></i>
                             <textarea class="input-field" placeholder="Project Description"></textarea>
                         </div>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary" name="btnPlaceBid">Bid</button>
+                        <button type="submit" class="modalButtons btn btn-primary" name="btnPlaceBid">Bid</button>
                     </form>
                 </div>
             </div>
