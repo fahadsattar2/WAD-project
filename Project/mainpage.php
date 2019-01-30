@@ -92,21 +92,11 @@ include "Functions/functions.php";
                             <img class="d-block w-100" src="Images/wallpaper%20(2).jpg" style="height: 400px"  alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <!--<img class="d-block w-100" src="Images/wallpaper%20(3).jpg" style="height: 400px"  alt="Third slide">
-                            -->
-                            <video height="400px" controls autoplay>
+                            <video class="d-block w-100 col-sm-12 col-lg-12 col-xl-12 col-md-12 col-12" height="400px" controls autoplay>
                                 <source src="Images/BackgroundVideo.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
                 <hr>
                 <div id="mainBody" class="container-fluid col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
