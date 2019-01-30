@@ -1,5 +1,29 @@
 <?php
 require_once "Server/db_connection.php";
+include "Functions/functions.php";
+
+session_start();
+function debug_to_console( $data ) {
+    $output = $data;
+    if ( is_array( $output ) )
+        $output = implode( ',', $output);
+    echo "<script>console.log( 'Printing: " . $output . "' );</script>";
+}
+
+    if(!isset($_SESSION['user_email'])){
+        header('location: homepage.php?You are Not LogIn!');
+    }
+
+    if(isset($_GET['projectID']))
+    {
+        $projectID = $_GET['projectID'];
+    }
+
+    if(isset($_POST['btnPlaceBid']))
+    {
+        print_r("abcdedfg");
+        $email = $_SESSION['user_email'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -25,23 +49,59 @@ require_once "Server/db_connection.php";
 </head>
 <body>
 
+<?php
+web_header();
+?>
     <div class="container-fluid col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11">
 
         <div class="card container-fluid my-5 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11">
             <div class="row">
             <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-3">
                 <h3>Bids</h3><br>
-                <h5 id="totalBids">3</h5> <!--Yahan number of bids ain gi jo projects pr ho chuki hain abi tk-->
+                <h5 id="totalBids">
+                    <?php
+                        $query = "select count(bid_no) as Total from bids where project_id = $projectID";
+                        $result = mysqli_query($connection,$query);
+                        $count = mysqli_num_rows($result);
+                        $row = mysqli_fetch_assoc($result);
+                        if($count == 0 )
+                            echo 0;
+                        else
+                            echo $row['Total'];
+                    ?>
+                </h5>
             </div>
 
             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-5">
                 <h3>Average Bid</h3><br>
-                <h5>PKR. <span id="AvgBid">1000</span></h5> <!--Yahan number of bids ki average aye gi jo hain abi tk-->
+                <h5>PKR. <span id="AvgBid">
+                        <?php
+                        $query = "select avg(rate) as average from bids where project_id = $projectID";
+                        $result = mysqli_query($connection,$query);
+                        $count = mysqli_num_rows($result);
+                        $row = mysqli_fetch_assoc($result);
+                        if($count == 0 )
+                            echo "0";
+                        else
+                            echo $row['average'];
+                        ?>
+                    </span></h5>
             </div>
 
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-5">
                     <h3>Project Budget</h3><br>
-                    <h5>PKR. <span id="projectBudget">10000</span></h5>
+                    <h5>PKR. <span id="projectBudget">
+                            <?php
+                            $query = "select Budget from projects where project_id = $projectID";
+                            $result = mysqli_query($connection,$query);
+                            $count = mysqli_num_rows($result);
+                            $row = mysqli_fetch_assoc($result);
+                            if($count == 0 )
+                                echo "0";
+                            else
+                                echo $row['Budget'];
+                            ?>
+                        </span></h5>
                 </div>
 
             </div>
@@ -52,15 +112,39 @@ require_once "Server/db_connection.php";
             <div class="col-xl-9 col-lg-9 col-md-7 col-sm-7 col-8">
                 <div class="my-3">
                     <h3>Project ID</h3>
-                    <span>00000</span>
+                    <span>
+                    <?php echo $projectID ?>
+                    </span>
                 </div>
                 <div class="my-3">
                     <h3>Project Description</h3>
-                    <span>yahan sari project ki details ain gi </span>
+                    <span>
+                        <?php
+                        $query = "select Description from projects where project_id = $projectID";
+                        $result = mysqli_query($connection,$query);
+                        $count = mysqli_num_rows($result);
+                        $row = mysqli_fetch_assoc($result);
+                        if($count == 0 )
+                            echo "0";
+                        else
+                            echo $row['Description'];
+                        ?>
+                    </span>
                 </div>
                 <div class="my-3">
                     <h3>Client Info</h3>
-                    <span>yahan uski rating waghaira aye gi</span>
+                    <span>
+                        <?php
+                        $query = "SELECT client_username FROM client,projects WHERE client.client_id = projects.client_id and project_id = $projectID";
+                        $result = mysqli_query($connection,$query);
+                        $count = mysqli_num_rows($result);
+                        $row = mysqli_fetch_assoc($result);
+                        if($count == 0 )
+                            echo "0";
+                        else
+                            echo $row['client_username'];
+                        ?>
+                    </span>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6 my-2">
@@ -70,7 +154,7 @@ require_once "Server/db_connection.php";
             </div>
         </div>
 
-        <div class="container card my-5 col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11">
+        <div class="container card my-5 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 offset-1 offset-xl-1 offset-lg-1 offset-md-1 offset-sm-1">
             <div class="card-header">
                 Total Bids
             </div>
@@ -84,19 +168,26 @@ require_once "Server/db_connection.php";
                     </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    $query = "SELECT freelancer.freelancer_username,user.rating,bids.rate from freelancer,bids,user where bids.freelancer_id = freelancer.freelancer_id and user.id = freelancer.user_id and bids.project_id = $projectID";
+                    $result = mysqli_query($connection,$query);
+                    $count = mysqli_num_rows($result);
+                    if($count > 0 )
+                    {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $name = $row['freelancer_username'];
+                            $rating = $row['rating'];
+                            $bidAmount = $row['rate'];
+                            echo "<tr>
+                                  <td>$name</td>
+                                  <td>$rating /5</td>
+                                  <td>PKR. <span>$bidAmount</span></td>
+                            </tr>";
+                        }
+                    }
 
 
-                    <tr>
-                        <td>Muhammad Mustaqeem</td>
-                        <td>4 /5</td>
-                        <td>PKR. <span>7500</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Faisal Jawad</td>
-                        <td>4 /5</td>
-                        <td>PKR. <span>8000</span></td>
-                    </tr>
+                ?>
 
                     </tbody>
                 </table>
@@ -111,22 +202,23 @@ require_once "Server/db_connection.php";
                     <h4><span class="glyphicon glyphicon-dollar"></span>Place Your Bid</h4>
                     <button type="button" id="close" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body">
-                    <div class="input-container">
-                        <i class="fa fa-envelope icon"></i>
-                        <input class="input-field" type="number" placeholder="Enter Your Bid Amount" name="bid_amount"/>
-                    </div>
+                <form role="form" method="post">
+                    <div class="modal-body">
+                        <div class="input-container">
+                            <i class="fa fa-envelope icon"></i>
+                            <input class="input-field" type="number" placeholder="Enter Your Bid Amount" name="bid_amount"/>
+                        </div>
 
-                    <div class="input-container">
-                        <i class="fa fa-envelope icon"></i>
-                        <input class="input-field" type="text" placeholder="Deliver in" name="bid_time"/>
-                    </div>
+                        <div class="input-container">
+                            <i class="fa fa-envelope icon"></i>
+                            <input class="input-field" type="text" placeholder="Deliver in" name="bid_time"/>
+                        </div>
 
-                    <div class="input-container">
-                        <i class="fa fa-envelope icon"></i>
-                        <textarea class="input-field" placeholder="Porject Description"></textarea>
-                    </div>
-
+                        <div class="input-container">
+                            <i class="fa fa-envelope icon"></i>
+                            <textarea class="input-field" placeholder="Project Description"></textarea>
+                        </div>
+                        <button type="submit" data-dismiss="modal" class="btn btn-primary" name="btnPlaceBid">Bid</button>
                     </form>
                 </div>
             </div>
