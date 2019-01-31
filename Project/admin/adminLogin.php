@@ -5,7 +5,7 @@ $error_msg = '';
 if(isset($_POST['login'])){
     $adName = $_POST['AdminName'];
     $adPass = $_POST['AdminPassword'];
-    $select_admin = "select * from admins where admin_name = '$adName' AND admin_password = '$adPass'";
+    $select_admin = "select * from admins where admin_username = '$adName' AND admin_password = '$adPass'";
     $run_admin = mysqli_query($connection, $select_admin);
     $check_admin = mysqli_num_rows($run_admin);
     if($check_admin == 0){
@@ -20,7 +20,7 @@ if(isset($_POST['login'])){
             setcookie('AdminName','' );
             setcookie('AdminPassword', '');
         }
-        header('location:admin_panel.php?logged_in=You have successfully logged in!');
+        header('location:index.php?');
     }
 }
 ?>
@@ -36,10 +36,18 @@ if(isset($_POST['login'])){
     <link rel="stylesheet" type="text/css" href="css/custom.css">
     <title>Admin Login</title>
 </head>
+<style>
+    body{
+        background-image: url("Images/homepage.jpg");position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+    }
+</style>
 <body class="text-center">
 <form class="login_form" action="adminLogin.php" method="post">
     <h2 class="text-danger"><?php echo @$_GET['not_admin']?></h2>
-    <h2 class="text-primary"><?php echo @$_GET['logged_out']?></h2>
     <h3 class="m-3">Admin Login </h3>
     <div><?php echo $error_msg;?></div>
     <input type="text" id="AdminName" name="AdminName"

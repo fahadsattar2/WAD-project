@@ -76,7 +76,7 @@ $profile_picture = $row['my_file'];
         let button = document.getElementById("edit_desc");
         if (x.contentEditable === "true") {
             button.innerText = "Edit";
-            button.id = "save_desc";
+/*            button.id = "save_desc";*/
             button.className = "fa fa-pencil btn btn-primary";
             x.contentEditable = "false";
             edit_description(document.getElementById("myP").innerText);
@@ -93,7 +93,7 @@ $profile_picture = $row['my_file'];
         var x = document.getElementById("myT");
         var button = document.getElementById("myT");
         button.innerText = "Enter new Title Here!";
-        button.id = "edit_title";
+        /*button.id = "edit_title";*/
         x.contentEditable = "true";
         if (event.key === "Enter")
         {
@@ -101,7 +101,7 @@ $profile_picture = $row['my_file'];
             x.contentEditable = "false";
         }
     }
-    function edit_description($string)
+    function edit_description(responseText)
     {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function()
@@ -111,7 +111,7 @@ $profile_picture = $row['my_file'];
                 document.getElementById("myP").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET", "edit_description.php?e=" + $string, true);
+        xmlhttp.open("GET", "edit_description.php?e=" + responseText, true);
         xmlhttp.send();
     }
 </script>

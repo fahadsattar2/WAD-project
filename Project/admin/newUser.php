@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+require_once "db_connection.php";
+if(!isset($_SESSION['AdminName'])){
+    header('location: adminLogin.php?not_admin=You are not Admin!');
+}
+
 require "db_connection.php";
 
 if(isset($_POST['btn_add_user']))
@@ -18,7 +25,7 @@ if(isset($_POST['btn_add_user']))
     $run = mysqli_query($connection, $query);
     if($run)
     {
-        header("location: admin_panel.php?");
+        header("location: index.php?");
     }
 }
 
