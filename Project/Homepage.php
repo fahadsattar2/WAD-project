@@ -91,7 +91,7 @@ if(isset($_POST['sin_signin_btn']))
                 setcookie('user_email','' );
                 setcookie('user_pass', '');
             }
-            header('location:profile.php?logged_in=You have successfully logged in!');
+            header('location:mainpage.php?logged_in=You have successfully logged in!');
             //header('location: profile.php');
         }
 
