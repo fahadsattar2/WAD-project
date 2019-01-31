@@ -90,8 +90,8 @@ $profile_picture = $row['my_file'];
     }
 
     function edit_title() {
-        var x = document.getElementById("myT");
-        var button = document.getElementById("myT");
+        let x = document.getElementById("myT");
+        let button = document.getElementById("myT");
         button.innerText = "Enter new Title Here!";
         /*button.id = "edit_title";*/
         x.contentEditable = "true";
